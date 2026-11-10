@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Prepare your Singapore PR (e-PR) application: per-person document checklist, date windows, fees and photo check. Everything stays on your device.">
+<title>PR Ready SG</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a household "dossier" — setup column on the left, generated checklist on the right; stacks on phones */
+:root{
+  --paper:#f5f6f8; --card:#ffffff; --ink:#18213a; --muted:#5b6478; --line:#dde1ea;
+  --accent:#1d4ed8; --accent-soft:#e6edff; --stamp:#b4232c; --stamp-soft:#fbe9ea;
+  --good:#17804a; --good-soft:#e3f4ea; --warn:#a15c00; --warn-soft:#fdf1dc;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0f1422; --card:#161d2f; --ink:#e7eaf3; --muted:#9aa3b8; --line:#2a3350;
+  --accent:#7aa2ff; --accent-soft:#1c2a52; --stamp:#ff7b83; --stamp-soft:#3a1c22;
+  --good:#5fd394; --good-soft:#143224; --warn:#f0b45a; --warn-soft:#3a2a12; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f1422; --card:#161d2f; --ink:#e7eaf3; --muted:#9aa3b8; --line:#2a3350;
+  --accent:#7aa2ff; --accent-soft:#1c2a52; --stamp:#ff7b83; --stamp-soft:#3a1c22;
+  --good:#5fd394; --good-soft:#143224; --warn:#f0b45a; --warn-soft:#3a2a12; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(30px,5vw,44px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:20px;font-weight:700}
+h3{font-size:16px;font-weight:700}
+.lede{color:var(--muted);max-width:62ch;margin:8px 0 0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+.disclaim{font-size:13px;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:8px 12px;max-width:380px}
+
+.pains{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.pain b{font-family:var(--f-display);font-size:15px}
+.pain span{font-size:14px;color:var(--muted)}
+.pain .fix{font-size:13px;color:var(--accent);font-weight:600}
+
+.grid{margin-top:28px;display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.setup{position:sticky;top:16px}
+@media (max-width:860px){.setup{position:static}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label,.field .lbl{font-weight:600;font-size:14px}
+select,input[type=text],input[type=date],input[type=number]{font:inherit;font-size:15px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:13px;color:var(--muted)}
+.toggles{display:flex;flex-direction:column;gap:6px}
+.tog{display:flex;gap:8px;align-items:flex-start;font-size:14px}
+.tog input{margin-top:3px;accent-color:var(--accent)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:14px;font-weight:600;border-radius:8px;padding:8px 12px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--card)}
+button.ghost{background:transparent}
+button.x{padding:2px 8px;font-size:13px;color:var(--stamp);border-color:transparent;background:transparent}
+
+.person{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--paper)}
+.person .ph{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.chip.sp{background:var(--warn-soft);color:var(--warn)}
+.chip.na{background:var(--line);color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pgrid .full{grid-column:1/-1}
+
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat .v{font-family:var(--f-display);font-size:26px;font-weight:700}
+.meter{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs button{border:none;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:var(--muted);padding:10px 12px}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--stamp)}
+
+.who{display:flex;flex-direction:column;gap:18px}
+.who-block{display:flex;flex-direction:column;gap:8px}
+.who-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.doc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:8px}
+.doc.done{background:var(--good-soft);border-color:transparent}
+.doc.done .dt{text-decoration:line-through;text-decoration-color:var(--good)}
+.doc input{width:18px;height:18px;margin-top:2px;accent-color:var(--good)}
+.dt{font-weight:600}
+.dn{font-size:13px;color:var(--muted)}
+.flag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:1px}
+.flag.t{background:var(--warn-soft);color:var(--warn)}
+.flag.d{background:var(--stamp-soft);color:var(--stamp)}
+
+.note{border-left:3px solid var(--stamp);background:var(--stamp-soft);padding:10px 12px;border-radius:0 8px 8px 0;font-size:14px}
+.note.info{border-left-color:var(--accent);background:var(--accent-soft)}
+.steps{display:flex;flex-direction:column;gap:0;counter-reset:s}
+.step{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:none}
+.step .when{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+td.n,th.n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto}
+.drop{border:2px dashed var(--line);border-radius:10px;padding:20px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center}
+.res{display:flex;flex-direction:column;gap:6px}
+.ok{color:var(--good);font-weight:600}.bad{color:var(--stamp);font-weight:600}.mid{color:var(--warn);font-weight:600}
+.preview{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.preview canvas{max-width:160px;border:1px solid var(--line);border-radius:6px}
+footer{margin-top:32px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+footer a{color:var(--accent)}
+.ex{font-size:12px;font-weight:600;color:var(--warn);background:var(--warn-soft);padding:2px 8px;border-radius:999px}
+.doc{grid-template-columns:auto minmax(0,1fr) auto}
+.doc label{cursor:pointer}
+.att{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:12px;min-width:0}
+.att .fn{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--good);font-weight:600}
+@media (max-width:560px){.doc{grid-template-columns:auto minmax(0,1fr)}.att{grid-column:2;align-items:flex-start}}
+.btnlike{position:relative;display:inline-flex;align-items:center;font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
+.btnlike input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.btnlike:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.local{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--good-soft)}
+.local b{display:flex;gap:6px;align-items:center}
+.local span{font-size:13px}
+#bkText{font-family:var(--f-mono);font-size:12px;width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px}
+</style>
+
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="label">Singapore Permanent Residence · e-PR prep</div>
+      <h1>PR Ready SG</h1>
+      <p class="lede">Describe your household once. Get one checklist per person, the dates your documents must fall within, the fees, and a passport-photo check before you open the e-Service.</p>
+    </div>
+    <div class="disclaim">Independent prep aid, not affiliated with ICA. Everything you enter stays in this browser. Requirements change; confirm against ICA's own checklist before you submit.</div>
+  </header>
+
+  <section class="pains" aria-label="Common pain points">
+    <div class="pain"><b>Which column am I?</b><span>ICA's checklist splits documents across applicants, non-applying spouse and sponsor, with "only if" conditions.</span><span class="fix">→ Per-person checklist</span></div>
+    <div class="pain"><b>Who logs in, and when?</b><span>Sponsors fill the form, but each applicant must log in to declare before it can be submitted.</span><span class="fix">→ Who-does-what plan</span></div>
+    <div class="pain"><b>Documents expire</b><span>The employment letter must be dated within 3 months of submission; payslips cover the last 6 months.</span><span class="fix">→ Date window calculator</span></div>
+    <div class="pain"><b>Translations get rejected</b><span>Only embassy, notary-public or attested/notarised translations are accepted.</span><span class="fix">→ Translation flags</span></div>
+    <div class="pain"><b>Photo specs are strict</b><span>400 × 514 px, colour, recent, plain white background.</span><span class="fix">→ Photo checker</span></div>
+  </section>
+
+  <div class="grid">
+    <!-- SETUP -->
+    <aside class="panel setup" aria-label="Your household">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <h2>Your household</h2>
+        <span class="ex" id="exTag">Example data</span>
+      </div>
+      <div class="field">
+        <label for="scheme">Applying as</label>
+        <select id="scheme">
+          <option value="ep">Employment Pass / S Pass holder</option>
+          <option value="spouse">Spouse of a Singapore Citizen or PR</option>
+          <option value="child">Unmarried child (below 21) of an SC or PR</option>
+          <option value="parent">Aged parent of a Singapore Citizen</option>
+          <option value="student">Student in Singapore</option>
+        </select>
+        <span class="hint" id="schemeHint"></span>
+      </div>
+      <div class="field">
+        <label for="target">Planned submission date</label>
+        <input type="date" id="target">
+      </div>
+      <div class="field">
+        <span class="lbl">Marriage</span>
+        <select id="marriage" aria-label="Marriage">
+          <option value="none">Not married</option>
+          <option value="sg">Married, registered in Singapore</option>
+          <option value="overseas">Married, registered overseas</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="lbl">Any of these apply?</span>
+        <div class="toggles">
+          <label class="tog"><input type="checkbox" id="xDivorce"> A previous divorce (anyone in the household)</label>
+          <label class="tog"><input type="checkbox" id="xSeparated"> Currently separated</label>
+          <label class="tog"><input type="checkbox" id="xName"> A change of name</label>
+          <label class="tog"><input type="checkbox" id="xPrevKids"> Children from a previous marriage</label>
+          <label class="tog"><input type="checkbox" id="xLang"> Some documents are not in English</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="row" style="justify-content:space-between;align-items:center">
+          <span class="lbl">People</span>
+          <select id="addRole" aria-label="Add person" style="width:auto">
+            <option value="">+ Add person</option>
+            <option value="spouse">Applying spouse</option>
+            <option value="child">Applying child</option>
+            <option value="nonspouse">Non-applying spouse</option>
+          </select>
+        </div>
+        <div id="people" class="who"></div>
+      </div>
+      <div class="row">
+        <button class="ghost" id="resetEx">Load example</button>
+        <button class="ghost" id="clearAll">Start blank</button>
+      </div>
+      <div class="local" aria-label="Your data">
+        <b><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>Stored on this device only</b>
+        <span>Your answers and attached files stay in this browser. Nothing is sent to ICA or anyone else. Clearing this browser's site data deletes them, so keep your originals and a backup.</span>
+        <div class="row">
+          <button id="bkCopy">Download backup</button>
+          <label class="btnlike">Restore backup<input type="file" id="bkFile" accept=".json,application/json"></label>
+          <button class="x" id="wipe">Delete all data</button>
+        </div>
+        <textarea id="bkText" rows="3" readonly hidden aria-label="Backup text"></textarea>
+        <span id="localMsg" class="hint" aria-live="polite"></span>
+      </div>
+    </aside>
+
+    <!-- OUTPUT -->
+    <main class="panel" aria-label="Your plan">
+      <div class="summary">
+        <div class="stat"><span class="label">Ready</span><span class="v mono" id="sReady">0%</span><div class="meter"><i id="sMeter"></i></div></div>
+        <div class="stat"><span class="label">Documents</span><span class="v mono" id="sDocs">0</span><span class="hint" id="sDocsH"></span></div>
+        <div class="stat"><span class="label">Paid at submission</span><span class="v mono" id="sFee">S$0</span><span class="hint">non-refundable</span></div>
+        <div class="stat"><span class="label">Outcome expected</span><span class="v mono" id="sOut">—</span><span class="hint">~6 months, may be longer</span></div>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="check" id="tab-check">Checklist</button>
+        <button role="tab" aria-selected="false" data-tab="plan" id="tab-plan">Who &amp; when</button>
+        <button role="tab" aria-selected="false" data-tab="fees" id="tab-fees">Fees</button>
+        <button role="tab" aria-selected="false" data-tab="photo" id="tab-photo">Photo check</button>
+      </div>
+
+      <section id="pane-check" role="tabpanel"><div id="checklist" class="who"></div></section>
+      <section id="pane-plan" role="tabpanel" hidden><div id="plan" class="who"></div></section>
+      <section id="pane-fees" role="tabpanel" hidden><div id="fees"></div></section>
+      <section id="pane-photo" role="tabpanel" hidden>
+        <div class="who">
+          <p class="hint" style="margin:0">Your photo is checked in this browser only. It is not uploaded anywhere.</p>
+          <div class="drop">
+            <strong>Choose a passport photo (JPG or PNG)</strong>
+            <input type="file" id="photo" accept="image/jpeg,image/png" aria-label="Photo file">
+          </div>
+          <div class="preview"><canvas id="pc" hidden></canvas><div id="photoRes" class="res"></div></div>
+          <div class="note info">ICA asks for a recent colour photo, 400 × 514 pixels, full face, white background, no headgear unless worn for religious or racial customs (face must stay visible).</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <span>Sources: ICA Permanent Residence Application page (updated 30 Oct 2026) and ICA Document Checklist for Permanent Residence.</span>
+    <span><a href="https://www.ica.gov.sg/information-and-e-services/citizenship-and-permanent-residence/permanent-residence/permanent-residence-application" target="_blank" rel="noopener">ica.gov.sg · Permanent Residence Application</a> · <a href="https://www.ica.gov.sg/docs/ica/ica/ipses/pr-document-checklist.pdf" target="_blank" rel="noopener">ICA document checklist (PDF)</a></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+const KEY='prready.v1';
+const SCHEMES={
+  ep:{main:'EP / S Pass holder',sponsor:null,hint:'No sponsor needed. You fill in and submit the form yourself, and can include your spouse and unmarried children below 21.'},
+  spouse:{main:'Applying spouse',sponsor:'SC / PR spouse (sponsor)',hint:'Your SC or PR spouse is the sponsor and fills in the form for you.'},
+  child:{main:'Applying child',sponsor:'SC / PR parent (sponsor)',hint:'Your SC or PR parent is the sponsor and fills in the form.'},
+  parent:{main:'Aged parent',sponsor:'SC child aged 21+ (sponsor)',hint:'Your Singapore Citizen child, aged 21 or above, sponsors and fills in the form.'},
+  student:{main:'Student',sponsor:null,hint:'Must have passed at least one national exam (PSLE, N/O/A Level) or be in the Integrated Programme.'}
+};
+const ROLE_LABEL={main:'Main applicant',spouse:'Applying spouse',child:'Applying child',nonspouse:'Non-applying spouse',sponsor:'Sponsor'};
+
+function iso(d){return d.toISOString().slice(0,10)}
+function addMonths(d,m){const x=new Date(d);x.setMonth(x.getMonth()+m);return x}
+function fmt(d){return d.toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'})}
+function uid(){return Math.random().toString(36).slice(2,8)}
+
+function example(){
+  return {scheme:'ep',target:iso(addMonths(new Date(),1)),marriage:'overseas',
+    x:{divorce:false,separated:false,name:false,prevKids:false,lang:true},
+    people:[
+      {id:'p1',role:'main',name:'Wei Ling',sex:'f',age:34,bornSG:false,work:'employed',overseas:false},
+      {id:'p2',role:'spouse',name:'Arjun',sex:'m',age:36,bornSG:false,work:'employed',overseas:true},
+      {id:'p3',role:'child',name:'Mei',sex:'f',age:6,bornSG:true,work:'none',overseas:false}
+    ],checked:{},files:{},example:true};
+}
+function blank(){return {scheme:'ep',target:iso(addMonths(new Date(),1)),marriage:'none',x:{divorce:false,separated:false,name:false,prevKids:false,lang:false},people:[{id:uid(),role:'main',name:'',sex:'f',age:30,bornSG:false,work:'employed',overseas:false}],checked:{},files:{},example:false}}
+
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||!S.people)S=example();
+if(!S.files)S.files={};
+
+/* ---------- local file vault (IndexedDB, this browser only) ---------- */
+let dbp=null;
+function db(){if(dbp)return dbp;dbp=new Promise((res,rej)=>{try{const r=indexedDB.open('prready-files',1);r.onupgradeneeded=()=>r.result.createObjectStore('files');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}});dbp.catch(()=>{dbp=null});return dbp}
+async function idb(mode,fn){const d=await db();return new Promise((res,rej)=>{const tx=d.transaction('files',mode);fn(tx.objectStore('files'));tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);tx.onabort=()=>rej(tx.error)})}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function msg(s){const m=document.getElementById('localMsg');if(m)m.textContent=s}
+function attHtml(k){
+  const f=S.files[k];
+  if(f)return `<div class="att"><span class="fn" title="${esc(f.name)}">${esc(f.name)}</span><span class="hint mono">${Math.max(1,Math.round(f.size/1024))} KB · on this device</span><button class="x" data-rm="${esc(k)}" aria-label="Remove ${esc(f.name)}">Remove</button></div>`;
+  return `<div class="att"><label class="btnlike">Attach file<input type="file" data-up="${esc(k)}" accept="application/pdf,image/jpeg,image/png"></label></div>`;
+}
+async function storeFile(k,file){
+  if(!file)return;
+  try{await idb('readwrite',st=>st.put(file,k));S.files[k]={name:file.name,size:file.size,type:file.type,at:Date.now()};S.checked[k]=true;save();renderOut();msg('Saved '+file.name+' in this browser.')}
+  catch(e){msg("This browser blocked local storage, so the file wasn't kept. Use a normal (not private) window.")}
+}
+async function removeFile(k){try{await idb('readwrite',st=>st.delete(k))}catch(e){}delete S.files[k];save();renderOut();msg('File removed from this browser.')}
+let wipeArmed=false;
+async function wipeAll(btn){
+  if(!wipeArmed){wipeArmed=true;btn.textContent='Click again to delete everything';setTimeout(()=>{wipeArmed=false;btn.textContent='Delete all data'},4000);return}
+  wipeArmed=false;btn.textContent='Delete all data';
+  try{localStorage.removeItem(KEY)}catch(e){}
+  try{await idb('readwrite',st=>st.clear())}catch(e){}
+  S=blank();render();msg('All answers and files were deleted from this browser.');
+}
+function copyBackup(){
+  const data=JSON.stringify({...S,files:{},app:'pr-ready',v:1});
+  const fallback=()=>{const ta=document.getElementById('bkText');ta.hidden=false;ta.value=data;ta.focus();ta.select();msg('Copy the text above and save it as a .json file.')};
+  try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='pr-ready-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);msg('Backup downloaded. Attached files are not included.')}catch(e){fallback()}
+}
+function restoreBackup(input){
+  const f=input.files[0];input.value='';if(!f)return;
+  f.text().then(txt=>{const o=JSON.parse(txt);if(!o||!Array.isArray(o.people))throw new Error('bad');
+    o.files=S.files;o.checked=o.checked||{};o.x=Object.assign({divorce:false,separated:false,name:false,prevKids:false,lang:false},o.x||{});o.example=false;S=o;render();msg('Backup restored. Files already in this browser were kept.')})
+   .catch(()=>msg("That file isn't a PR Ready backup."));
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+
+function syncSponsor(){
+  const sch=SCHEMES[S.scheme];
+  const has=S.people.find(p=>p.role==='sponsor');
+  if(sch.sponsor&&!has)S.people.push({id:uid(),role:'sponsor',name:'',sex:'m',age:40,bornSG:true,work:'employed',overseas:false});
+  if(!sch.sponsor&&has)S.people=S.people.filter(p=>p.role!=='sponsor');
+}
+const isApplicant=p=>['main','spouse','child'].includes(p.role);
+const pname=p=>(p.name&&p.name.trim())||ROLE_LABEL[p.role];
+function roleText(p){return p.role==='main'?SCHEMES[S.scheme].main:p.role==='sponsor'?SCHEMES[S.scheme].sponsor:ROLE_LABEL[p.role]}
+
+/* Document rules, from ICA's Document Checklist for Permanent Residence */
+function docsFor(p){
+  const out=[],app=isApplicant(p),spo=p.role==='sponsor',non=p.role==='nonspouse';
+  const married=S.marriage!=='none'&&p.age>=18;
+  const adult=p.age>=17;
+  const add=(id,t,n,o={})=>out.push({key:p.id+':'+id,t,n,...o});
+  if(app)add('photo','Passport-sized digital photo','Colour, recent, 400 × 514 px, white background. Use the Photo check tab.');
+  if(app||non)add('pp','Passport / travel document','Bio-data page. Not needed for documents issued by ICA.');
+  if((app||non)&&!p.bornSG)add('bc','Birth certificate / household register','Only because the birth was not registered in Singapore.',{tr:true});
+  if(app&&p.role==='child')add('adopt','Adoption papers (if adopted)','Only for minor and parent applicants who were legally adopted.',{optional:true});
+  if(married&&S.marriage==='overseas'&&(app||non))add('mc','Marriage certificate','Only because the marriage was registered outside Singapore.',{tr:true});
+  if(S.x.separated&&married&&(app||non))add('sep','Separation deed','',{tr:true});
+  if(S.x.name&&adult&&(app||non))add('dp','Deed poll or religious certificate for change of name','Only for the person whose name changed.',{tr:true,optional:true});
+  if(S.x.divorce&&adult)add('div','Divorce certificate, incl. Certificate of Making Interim Judgment Final','Only for the person previously divorced.',{tr:true,optional:true});
+  if(S.x.prevKids&&adult&&(app||non))add('cust','Custody papers for children from a previous marriage','',{tr:true});
+  if(S.x.prevKids&&app&&p.role==='child'&&p.age<21)add('consent','Letter of consent from ex-spouse','For minor applicants under joint custody.');
+  if(adult&&p.work!=='none'){
+    add('edu','Educational certificates and transcripts','Highest qualifications first.',{tr:true});
+    add('skill','Skill certificates / professional licences','If any.',{optional:true});
+    if(!spo)add('mem','Membership certificates','Professional bodies, if any.',{optional:true});
+  } else if(adult && p.work==='none' && !spo){
+    add('edu','Educational certificates and transcripts','',{tr:true});
+  }
+  if(p.role==='child'&&p.age>=12&&S.scheme!=='student'){}
+  if(S.scheme==='student'&&p.role==='main')add('exam','National exam results (PSLE / N / O / A Level) or IP enrolment proof','Evidence for the student scheme.');
+  if(p.work==='employed'){
+    add('loe','Letter of employment from current employer','Must state occupation, start date, basic and gross monthly salary.',{dated:true});
+    add('pay','Pay slips, last 6 months','',{pay:true});
+    if(p.overseas)add('tax','Income tax assessments / receipts, latest 3 years','Only because this person works overseas.',{tr:true});
+  }
+  if(p.work==='self'){
+    add('acra','Latest ACRA Business Registration Certificate','');
+    add('bs','Balance sheets, latest 3 years','');
+    add('pl','Profit and loss statements, latest 3 years','');
+  }
+  if(S.scheme==='parent'&&spo){
+    add('nc_bc','Non-applying children: birth certificates','Only for births not registered in Singapore.',{tr:true,optional:true});
+    add('nc_pay','Non-applying children: latest 1 month pay slip','');
+    add('nc_tax','Non-applying children: latest tax assessment','Only if working overseas.',{optional:true});
+  }
+  return out;
+}
+
+/* ---------- render setup ---------- */
+const $=id=>document.getElementById(id);
+function renderSetup(){
+  $('scheme').value=S.scheme;$('schemeHint').textContent=SCHEMES[S.scheme].hint;
+  $('target').value=S.target;$('marriage').value=S.marriage;
+  $('xDivorce').checked=S.x.divorce;$('xSeparated').checked=S.x.separated;$('xName').checked=S.x.name;$('xPrevKids').checked=S.x.prevKids;$('xLang').checked=S.x.lang;
+  $('exTag').hidden=!S.example;
+  const box=$('people');box.innerHTML='';
+  S.people.forEach(p=>{
+    const d=document.createElement('div');d.className='person';
+    const chip=isApplicant(p)?'chip':p.role==='sponsor'?'chip sp':'chip na';
+    d.innerHTML=`<div class="ph"><span class="${chip}">${roleText(p)}</span>${(p.role==='spouse'||p.role==='child'||p.role==='nonspouse')?`<button class="x" data-del="${p.id}" aria-label="Remove ${pname(p)}">Remove</button>`:''}</div>
+    <div class="pgrid">
+      <div class="field full"><label for="n-${p.id}">Name</label><input type="text" id="n-${p.id}" data-f="name" data-id="${p.id}" value="${(p.name||'').replace(/"/g,'&quot;')}" placeholder="${ROLE_LABEL[p.role]}"></div>
+      <div class="field"><label for="a-${p.id}">Age</label><input type="number" min="0" max="110" id="a-${p.id}" data-f="age" data-id="${p.id}" value="${p.age}"></div>
+      <div class="field"><label for="s-${p.id}">Sex</label><select id="s-${p.id}" data-f="sex" data-id="${p.id}"><option value="f">Female</option><option value="m">Male</option></select></div>
+      <div class="field full"><label for="w-${p.id}">Work</label><select id="w-${p.id}" data-f="work" data-id="${p.id}"><option value="employed">Employed</option><option value="self">Self-employed</option><option value="none">Not working / studying</option></select></div>
+      <label class="tog full"><input type="checkbox" id="b-${p.id}" data-f="bornSG" data-id="${p.id}"> Birth registered in Singapore</label>
+      ${p.work==='employed'?`<label class="tog full"><input type="checkbox" id="o-${p.id}" data-f="overseas" data-id="${p.id}"> Currently works overseas</label>`:''}
+    </div>`;
+    box.appendChild(d);
+    d.querySelector(`#s-${p.id}`).value=p.sex;d.querySelector(`#w-${p.id}`).value=p.work;
+    d.querySelector(`#b-${p.id}`).checked=!!p.bornSG;
+    const o=d.querySelector(`#o-${p.id}`);if(o)o.checked=!!p.overseas;
+  });
+}
+
+/* ---------- render output ---------- */
+function renderOut(){
+  const target=new Date(S.target||Date.now());
+  const letterFrom=addMonths(target,-3);
+  const payMonths=[];for(let i=6;i>=1;i--){const m=addMonths(new Date(target.getFullYear(),target.getMonth(),1),-i);payMonths.push(m.toLocaleDateString('en-SG',{month:'short',year:'2-digit'}))}
+  // checklist
+  const cl=$('checklist');cl.innerHTML='';
+  let total=0,done=0,trCount=0;
+  const order=['main','spouse','child','nonspouse','sponsor'];
+  [...S.people].sort((a,b)=>order.indexOf(a.role)-order.indexOf(b.role)).forEach(p=>{
+    const docs=docsFor(p);if(!docs.length)return;
+    const blk=document.createElement('div');blk.className='who-block';
+    const pd=docs.filter(x=>S.checked[x.key]).length;
+    total+=docs.length;done+=pd;
+    blk.innerHTML=`<div class="who-head"><h3>${pname(p)} <span class="${isApplicant(p)?'chip':p.role==='sponsor'?'chip sp':'chip na'}">${roleText(p)}</span></h3><span class="hint mono">${pd}/${docs.length}</span></div>`;
+    docs.forEach(x=>{
+      const tr=x.tr&&S.x.lang;if(tr)trCount++;
+      let n=x.n;
+      if(x.dated)n+=` Dated on or after <span class="mono">${fmt(letterFrom)}</span>.`;
+      if(x.pay)n+=` Months: <span class="mono">${payMonths.join(' · ')}</span>.`;
+      const row=document.createElement('div');row.className='doc'+(S.checked[x.key]?' done':'');
+      row.innerHTML=`<input type="checkbox" id="c-${x.key}" data-doc="${x.key}" ${S.checked[x.key]?'checked':''}><label for="c-${x.key}"><span class="dt">${x.t}</span>${x.dated?'<span class="flag d">Date-sensitive</span>':''}${tr?'<span class="flag t">Translate if not English</span>':''}${x.optional?'<span class="flag" style="background:var(--line);color:var(--muted)">If applicable</span>':''}<br><span class="dn">${n}</span></label>${attHtml(x.key)}`;
+      blk.appendChild(row);
+    });
+    cl.appendChild(blk);
+  });
+  if(S.x.lang){const n=document.createElement('div');n.className='note';n.innerHTML='<b>Translations.</b> ICA accepts translations from the issuing country\'s embassy, from a notary public (in Singapore or the issuing country), or private translations attested by that embassy or notarised. Upload the original together with its translation.';cl.prepend(n)}
+  const note=document.createElement('div');note.className='note info';note.textContent='ICA may ask for further documents during assessment. Respond quickly; a stalled request is the most common reason a case runs past six months.';cl.appendChild(note);
+
+  // summary
+  const pct=total?Math.round(done/total*100):0;
+  $('sReady').textContent=pct+'%';$('sMeter').style.width=pct+'%';
+  $('sDocs').textContent=total;$('sDocsH').textContent=done+' collected · '+Object.keys(S.files).length+' files stored'+(S.x.lang&&trCount?` · ${trCount} may need translation`:'');
+  const apps=S.people.filter(isApplicant);
+  $('sFee').textContent='S$'+(apps.length*100);
+  $('sOut').textContent=addMonths(target,6).toLocaleDateString('en-SG',{month:'short',year:'numeric'});
+
+  // plan
+  const sch=SCHEMES[S.scheme];const spon=S.people.find(p=>p.role==='sponsor');
+  const kids=apps.filter(p=>p.age<15);const males=apps.filter(p=>p.sex==='m');
+  const pl=$('plan');
+  const steps=[
+    [fmt(addMonths(target,-2)),'Collect & translate',`Request birth, marriage and other civil documents now. Translations through an embassy or notary can take weeks.`],
+    [fmt(addMonths(target,-1)),'Singpass for everyone 15+',`${apps.filter(p=>p.age>=15).map(pname).join(', ')||'Each applicant'}${spon?', and '+pname(spon):''} each need their own Singpass. New registration can take a few working days.`],
+    [fmt(letterFrom)+' →','Employment letters',`Ask employers for letters dated no earlier than ${fmt(letterFrom)}, stating occupation, start date, basic and gross salary.`],
+    [fmt(target),spon?`${pname(spon)} fills in the form`:`${pname(apps[0]||{role:'main'})} fills in the form`,spon?`The sponsor logs in, completes the form and uploads documents. Before submission, each applicant must log in to review and make their declarations.`:`Log in, complete the form, upload documents, declare and submit.`],
+    [fmt(target),'Pay S$'+apps.length*100,'S$100 per applicant, non-refundable, paid on submission.'],
+    [fmt(addMonths(target,6)),'Outcome by email','Generally within 6 months if documents are complete. Track status in the e-Service or MyICA.'],
+    ['After IPA','Complete formalities','On approval you receive an In-Principle Approval letter, then complete formalities and pay the remaining fees to receive your IC.']
+  ];
+  pl.innerHTML=`<div class="steps">${steps.map(s=>`<div class="step"><span class="when">${s[0]}</span><span><b>${s[1]}</b><br><span class="dn">${s[2]}</span></span></div>`).join('')}</div>`
+   +(kids.length?`<div class="note info"><b>Under 15:</b> ${kids.map(pname).join(', ')} use the non-Singpass option, so no Singpass is needed for them.</div>`:'')
+   +(males.length?`<div class="note"><b>National Service:</b> ${males.map(pname).join(', ')} ${males.length>1?'are':'is'} male. Male PRs granted status as a student or under a parent's sponsorship are liable for NS. Read the CMPB guidance (cmpb.gov.sg) before applying.</div>`:'')
+   +`<div class="note info"><b>During processing:</b> if your address, marital status or qualifications change, update them in the application's case summary page rather than starting again.</div>`;
+
+  // fees
+  const ic=apps.filter(p=>p.age>=15).length;
+  const rows=[['Application fee','At submission',apps.length,100],['Entry Permit','At formalities',apps.length,20],['5-year Re-Entry Permit','At formalities',apps.length,50],['Singapore Identity Card (aged 15+)','At formalities',ic,50]];
+  const tot=rows.reduce((a,r)=>a+r[2]*r[3],0);
+  $('fees').innerHTML=`<div class="tbl"><table><thead><tr><th>Fee</th><th>When</th><th class="n">People</th><th class="n">Each</th><th class="n">Total</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="n">${r[2]}</td><td class="n">S$${r[3]}</td><td class="n">S$${r[2]*r[3]}</td></tr>`).join('')}<tr><th colspan="4">If approved</th><th class="n">S$${tot}</th></tr></tbody></table></div><p class="hint">All ICA fees are non-refundable. Translation and notarisation costs are extra and vary by provider. Estimate only; ICA notifies successful applicants of the fees that apply.</p>`;
+}
+
+function render(){syncSponsor();renderSetup();renderOut();save()}
+
+/* ---------- events ---------- */
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.dataset.doc){S.checked[t.dataset.doc]=t.checked;renderOut();save();return}
+  if(t.dataset.up){storeFile(t.dataset.up,t.files[0]);return}
+  if(t.id==='bkFile'){restoreBackup(t);return}
+  if(t.id==='scheme'){S.scheme=t.value;S.example=false;render();return}
+  if(t.id==='target'){S.target=t.value;renderOut();save();return}
+  if(t.id==='marriage'){S.marriage=t.value;S.example=false;render();return}
+  const xm={xDivorce:'divorce',xSeparated:'separated',xName:'name',xPrevKids:'prevKids',xLang:'lang'};
+  if(xm[t.id]){S.x[xm[t.id]]=t.checked;S.example=false;render();return}
+  if(t.id==='addRole'&&t.value){const r=t.value;S.people.push({id:uid(),role:r,name:'',sex:r==='child'?'m':'f',age:r==='child'?8:32,bornSG:r==='child',work:r==='child'?'none':'employed',overseas:false});t.value='';S.example=false;render();return}
+  if(t.id==='photo'){checkPhoto(t.files[0]);return}
+  if(t.dataset.f){const p=S.people.find(x=>x.id===t.dataset.id);if(!p)return;const f=t.dataset.f;
+    p[f]=t.type==='checkbox'?t.checked:f==='age'?Math.max(0,parseInt(t.value||'0',10)):t.value;S.example=false;
+    if(f==='name'){renderOut();save()}else render();}
+});
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.f==='name'){const p=S.people.find(x=>x.id===t.dataset.id);if(p){p.name=t.value;renderOut();save()}}});
+document.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.dataset.del){S.people=S.people.filter(p=>p.id!==t.dataset.del);S.example=false;render()}
+  if(t.dataset.rm){removeFile(t.dataset.rm);return}
+  if(t.id==='bkCopy'){copyBackup();return}
+  if(t.id==='wipe'){wipeAll(t);return}
+  if(t.id==='resetEx'){const f=S.files;S=example();S.files=f;render()}
+  if(t.id==='clearAll'){const f=S.files;S=blank();S.files=f;render()}
+  if(t.dataset.tab){document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',b===t));['check','plan','fees','photo'].forEach(k=>$('pane-'+k).hidden=k!==t.dataset.tab)}
+});
+
+/* ---------- photo checker ---------- */
+function checkPhoto(file){
+  const res=$('photoRes');const c=$('pc');
+  if(!file){res.innerHTML='';c.hidden=true;return}
+  const img=new Image();const url=URL.createObjectURL(file);
+  img.onload=()=>{
+    const w=img.naturalWidth,h=img.naturalHeight;
+    c.width=w;c.height=h;const ctx=c.getContext('2d');ctx.drawImage(img,0,0);c.hidden=false;
+    // sample a 6% border strip on top, left and right (skip bottom: shoulders)
+    const bw=Math.max(2,Math.round(w*.06)),bh=Math.max(2,Math.round(h*.06));
+    let n=0,lum=0,sat=0;
+    const sample=(x,y,ww,hh)=>{const d=ctx.getImageData(x,y,ww,hh).data;for(let i=0;i<d.length;i+=16){const r=d[i],g=d[i+1],b=d[i+2];const mx=Math.max(r,g,b),mn=Math.min(r,g,b);lum+=(r+g+b)/3;sat+=mx-mn;n++}};
+    sample(0,0,w,bh);sample(0,0,bw,Math.round(h*.6));sample(w-bw,0,bw,Math.round(h*.6));
+    lum/=n;sat/=n;
+    const dimOk=w===400&&h===514;const ratioOk=Math.abs(w/h-400/514)<0.01;
+    const kb=Math.round(file.size/1024);
+    const bgOk=lum>=235&&sat<18,bgMid=lum>=215&&sat<30;
+    res.innerHTML=`
+      <div>${dimOk?'<span class="ok">✓ 400 × 514 px</span>':ratioOk?`<span class="mid">Right shape, wrong size: ${w} × ${h} px. Resize to 400 × 514.</span>`:`<span class="bad">✗ ${w} × ${h} px. ICA needs 400 × 514 px.</span>`}</div>
+      <div>${bgOk?'<span class="ok">✓ Background looks white</span>':bgMid?'<span class="mid">Background is off-white or shadowed. Retake against a white wall with even light.</span>':'<span class="bad">✗ Background does not look white</span>'}</div>
+      <div class="hint mono">${file.type.replace('image/','').toUpperCase()} · ${kb} KB · edge brightness ${Math.round(lum)}/255</div>
+      <div class="hint">Also check yourself: taken recently, full face, eyes open, no headgear unless worn for religious or racial customs.</div>`;
+    URL.revokeObjectURL(url);
+  };
+  img.onerror=()=>{res.innerHTML='<span class="bad">That file could not be read as an image. Use a JPG or PNG.</span>'};
+  img.src=url;
+}
+
+render();
+})();
+</script>
+
+</body>
+</html>
