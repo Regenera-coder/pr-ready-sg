@@ -123,6 +123,14 @@ footer a{color:var(--accent)}
 .local{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--good-soft)}
 .local b{display:flex;gap:6px;align-items:center}
 .local span{font-size:13px}
+.trust{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.trust div{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:10px;background:var(--accent-soft)}
+.trust b{font-family:var(--f-display);font-size:15px}
+.trust span{font-size:14px}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;align-items:center}
+.prow .dn{word-break:break-all}
+.chk{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.chk li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;font-size:14px}
 #bkText{font-family:var(--f-mono);font-size:12px;width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px}
 </style>
 
@@ -145,6 +153,12 @@ footer a{color:var(--accent)}
     <div class="pain"><b>Documents expire</b><span>The employment letter must be dated within 3 months of submission; payslips cover the last 6 months.</span><span class="fix">→ Date window calculator</span></div>
     <div class="pain"><b>Translations get rejected</b><span>Only embassy, notary-public or attested/notarised translations are accepted.</span><span class="fix">→ Translation flags</span></div>
     <div class="pain"><b>Photo specs are strict</b><span>400 × 514 px, colour, recent, plain white background.</span><span class="fix">→ Photo checker</span></div>
+  </section>
+
+  <section class="trust" aria-label="Before you start">
+    <div><b>You submit your own application</b><span>Log in to ICA's e-Service with your own Singpass. Never give your Singpass login to anyone, including people helping you.</span></div>
+    <div><b>No one can improve your chances</b><span>ICA assesses every application on its merits and does not endorse consultants. Be wary of anyone who promises approval.</span></div>
+    <div><b>Pay ICA only through ICA</b><span>The S$100 fee per applicant is paid on ICA's e-Service when you submit. Check your status and any approval letter on MyICA.</span></div>
   </section>
 
   <div class="grid">
@@ -230,11 +244,13 @@ footer a{color:var(--accent)}
         <button role="tab" aria-selected="false" data-tab="plan" id="tab-plan">Who &amp; when</button>
         <button role="tab" aria-selected="false" data-tab="fees" id="tab-fees">Fees</button>
         <button role="tab" aria-selected="false" data-tab="photo" id="tab-photo">Photo check</button>
+        <button role="tab" aria-selected="false" data-tab="pack" id="tab-pack">Submission pack</button>
       </div>
 
       <section id="pane-check" role="tabpanel"><div id="checklist" class="who"></div></section>
       <section id="pane-plan" role="tabpanel" hidden><div id="plan" class="who"></div></section>
       <section id="pane-fees" role="tabpanel" hidden><div id="fees"></div></section>
+      <section id="pane-pack" role="tabpanel" hidden><div id="pack" class="who"></div></section>
       <section id="pane-photo" role="tabpanel" hidden>
         <div class="who">
           <p class="hint" style="margin:0">Your photo is checked in this browser only. It is not uploaded anywhere.</p>
@@ -255,6 +271,7 @@ footer a{color:var(--accent)}
   </footer>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 (function(){
 const KEY='prready.v1';
@@ -276,7 +293,7 @@ function example(){
   return {scheme:'ep',target:iso(addMonths(new Date(),1)),marriage:'overseas',
     x:{divorce:false,separated:false,name:false,prevKids:false,lang:true},
     people:[
-      {id:'p1',role:'main',name:'Wei Ling',sex:'f',age:34,bornSG:false,work:'employed',overseas:false},
+      {id:'p1',role:'main',name:'Wei Ling',sex:'f',age:34,bornSG:false,work:'employed',overseas:false,singpass:true},
       {id:'p2',role:'spouse',name:'Arjun',sex:'m',age:36,bornSG:false,work:'employed',overseas:true},
       {id:'p3',role:'child',name:'Mei',sex:'f',age:6,bornSG:true,work:'none',overseas:false}
     ],checked:{},files:{},example:true};
@@ -397,11 +414,13 @@ function renderSetup(){
       <div class="field"><label for="s-${p.id}">Sex</label><select id="s-${p.id}" data-f="sex" data-id="${p.id}"><option value="f">Female</option><option value="m">Male</option></select></div>
       <div class="field full"><label for="w-${p.id}">Work</label><select id="w-${p.id}" data-f="work" data-id="${p.id}"><option value="employed">Employed</option><option value="self">Self-employed</option><option value="none">Not working / studying</option></select></div>
       <label class="tog full"><input type="checkbox" id="b-${p.id}" data-f="bornSG" data-id="${p.id}"> Birth registered in Singapore</label>
+      ${p.age>=15?`<label class="tog full"><input type="checkbox" id="sp-${p.id}" data-f="singpass" data-id="${p.id}"> Has an active Singpass with SMS 2FA</label>`:''}
       ${p.work==='employed'?`<label class="tog full"><input type="checkbox" id="o-${p.id}" data-f="overseas" data-id="${p.id}"> Currently works overseas</label>`:''}
     </div>`;
     box.appendChild(d);
     d.querySelector(`#s-${p.id}`).value=p.sex;d.querySelector(`#w-${p.id}`).value=p.work;
     d.querySelector(`#b-${p.id}`).checked=!!p.bornSG;
+    const sp=d.querySelector(`#sp-${p.id}`);if(sp)sp.checked=!!p.singpass;
     const o=d.querySelector(`#o-${p.id}`);if(o)o.checked=!!p.overseas;
   });
 }
@@ -459,12 +478,15 @@ function renderOut(){
   pl.innerHTML=`<div class="steps">${steps.map(s=>`<div class="step"><span class="when">${s[0]}</span><span><b>${s[1]}</b><br><span class="dn">${s[2]}</span></span></div>`).join('')}</div>`
    +(kids.length?`<div class="note info"><b>Under 15:</b> ${kids.map(pname).join(', ')} use the non-Singpass option, so no Singpass is needed for them.</div>`:'')
    +(males.length?`<div class="note"><b>National Service:</b> ${males.map(pname).join(', ')} ${males.length>1?'are':'is'} male. Male PRs granted status as a student or under a parent's sponsorship are liable for NS. Read the CMPB guidance (cmpb.gov.sg) before applying.</div>`:'')
+   +`<div class="note"><b>Keep every pass valid until the outcome.</b> If an applicant's pass is cancelled while ICA is processing (for example after a job change), their Singpass stops working and ICA treats the application as rejected.</div>`
+   +`<div class="note info"><b>Your Singpass is yours alone.</b> Each person logs in themselves, even when someone is helping. Giving your Singpass login to another person can be an offence.</div>`
    +`<div class="note info"><b>During processing:</b> if your address, marital status or qualifications change, update them in the application's case summary page rather than starting again.</div>`;
 
   // fees
   const ic=apps.filter(p=>p.age>=15).length;
   const rows=[['Application fee','At submission',apps.length,100],['Entry Permit','At formalities',apps.length,20],['5-year Re-Entry Permit','At formalities',apps.length,50],['Singapore Identity Card (aged 15+)','At formalities',ic,50]];
   const tot=rows.reduce((a,r)=>a+r[2]*r[3],0);
+  renderPack();
   $('fees').innerHTML=`<div class="tbl"><table><thead><tr><th>Fee</th><th>When</th><th class="n">People</th><th class="n">Each</th><th class="n">Total</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="n">${r[2]}</td><td class="n">S$${r[3]}</td><td class="n">S$${r[2]*r[3]}</td></tr>`).join('')}<tr><th colspan="4">If approved</th><th class="n">S$${tot}</th></tr></tbody></table></div><p class="hint">All ICA fees are non-refundable. Translation and notarisation costs are extra and vary by provider. Estimate only; ICA notifies successful applicants of the fees that apply.</p>`;
 }
 
@@ -493,10 +515,11 @@ document.addEventListener('click',e=>{
   if(t.dataset.del){S.people=S.people.filter(p=>p.id!==t.dataset.del);S.example=false;render()}
   if(t.dataset.rm){removeFile(t.dataset.rm);return}
   if(t.id==='bkCopy'){copyBackup();return}
+  if(t.id==='packZip'){buildZip(t);return}
   if(t.id==='wipe'){wipeAll(t);return}
   if(t.id==='resetEx'){const f=S.files;S=example();S.files=f;render()}
   if(t.id==='clearAll'){const f=S.files;S=blank();S.files=f;render()}
-  if(t.dataset.tab){document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',b===t));['check','plan','fees','photo'].forEach(k=>$('pane-'+k).hidden=k!==t.dataset.tab)}
+  if(t.dataset.tab){document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',b===t));['check','plan','fees','photo','pack'].forEach(k=>$('pane-'+k).hidden=k!==t.dataset.tab)}
 });
 
 /* ---------- photo checker ---------- */
@@ -525,6 +548,70 @@ function checkPhoto(file){
   };
   img.onerror=()=>{res.innerHTML='<span class="bad">That file could not be read as an image. Use a JPG or PNG.</span>'};
   img.src=url;
+}
+
+/* ---------- submission pack ---------- */
+const ORDER=['main','spouse','child','nonspouse','sponsor'];
+const sortedPeople=()=>[...S.people].sort((a,b)=>ORDER.indexOf(a.role)-ORDER.indexOf(b.role));
+const slug=t=>String(t).replace(/\(.*?\)/g,'').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40)||'file';
+function packName(p,i,x,f){const ext=(f&&f.name.includes('.'))?f.name.slice(f.name.lastIndexOf('.')).toLowerCase():'';return String(i+1).padStart(2,'0')+'_'+slug(pname(p))+'_'+slug(x.t)+ext}
+function packChecks(){
+  const c=[];
+  S.people.filter(p=>(isApplicant(p)||p.role==='sponsor')&&p.age>=15).forEach(p=>c.push([!!p.singpass,pname(p)+' has an active Singpass with SMS 2FA']));
+  let total=0,got=0;sortedPeople().forEach(p=>docsFor(p).filter(x=>!x.optional).forEach(x=>{total++;if(S.checked[x.key])got++}));
+  c.push([got===total,'All required documents collected ('+got+'/'+total+')']);
+  c.push([null,'Employment letters dated on or after '+fmt(addMonths(new Date(S.target||Date.now()),-3))]);
+  c.push([null,"Every applicant's pass stays valid until ICA gives the outcome"]);
+  return c;
+}
+function renderPack(){
+  const el=$('pack');if(!el)return;
+  const ppl=sortedPeople();let att=0;
+  const checks=packChecks();
+  const blocks=ppl.map(p=>{const docs=docsFor(p);if(!docs.length)return'';
+    return `<div class="who-block"><div class="who-head"><h3>${esc(pname(p))} <span class="${isApplicant(p)?'chip':p.role==='sponsor'?'chip sp':'chip na'}">${roleText(p)}</span></h3></div>`+
+    docs.map((x,i)=>{const f=S.files[x.key];if(f)att++;const st=f?['ok','In pack']:S.checked[x.key]?['mid','Not attached']:x.optional?['hint','If applicable']:['bad','Missing'];
+      return `<div class="prow"><span><span class="dt">${x.t}</span><br><span class="dn mono">${f?esc(packName(p,i,x,f)):(S.checked[x.key]?'Collected, but no file attached':'No file yet')}</span></span><span class="${st[0]}">${st[1]}</span></div>`}).join('')+'</div>'}).join('');
+  el.innerHTML=`<p class="hint" style="margin:0">Bring this pack to your submission session. Files are renamed and numbered in the order of this checklist, so uploading is quick. You still log in and submit yourself.</p>
+   <ul class="chk">${checks.map(c=>`<li><span class="${c[0]===true?'ok':c[0]===false?'bad':'mid'}">${c[0]===true?'✓':c[0]===false?'✗':'•'}</span><span>${esc(c[1])}${c[0]===null?' <span class="hint">(check yourself)</span>':''}</span></li>`).join('')}</ul>
+   <div class="row" style="align-items:center"><button class="primary" id="packZip" ${att?'':'disabled'}>Download submission pack (.zip)</button><span class="hint">${att} file${att===1?'':'s'} in the pack, plus a summary sheet</span></div>
+   <span id="packMsg" class="hint" aria-live="polite"></span>
+   ${blocks}
+   <div class="note info"><b>Details to have ready for the form.</b> Passport number and expiry, FIN, residential address and contact details, education history (school, qualification, year), employment history (employer, job title, dates, salary), and particulars of family members. ICA's e-Service form decides exactly what is asked.</div>`;
+}
+async function idbGet(k){const d=await db();return new Promise((res,rej)=>{const r=d.transaction('files').objectStore('files').get(k);r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+function saveBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+function packSummary(){
+  const L=[];const sch=SCHEMES[S.scheme];
+  L.push('PR READY SG · SUBMISSION PACK','Generated: '+fmt(new Date()),'Planned submission: '+fmt(new Date(S.target||Date.now())),'Applying as: '+sch.main,'');
+  L.push('PRE-SUBMISSION CHECKS');packChecks().forEach(c=>L.push((c[0]===true?'[x] ':c[0]===false?'[ ] ':'[?] ')+c[1]));L.push('');
+  sortedPeople().forEach((p,pi)=>{const docs=docsFor(p);if(!docs.length)return;L.push((pi+1)+'. '+pname(p)+' — '+roleText(p));
+    docs.forEach((x,i)=>{const f=S.files[x.key];L.push('   '+(f?'[file] '+packName(p,i,x,f):S.checked[x.key]?'[collected, no file] '+x.t:(x.optional?'[if applicable] ':'[MISSING] ')+x.t))});L.push('')});
+  L.push('ON SUBMISSION DAY',
+   '1. Each applicant aged 15+ logs in to ICA e-Service with their OWN Singpass. Never share Singpass logins.',
+   '2. '+(sch.sponsor?'The sponsor':'The main applicant')+' fills in the form and uploads the files from this pack.',
+   '3. Each applicant reviews the form and makes their own declarations.',
+   '4. Pay S$100 per applicant on ICA e-Service. Save the reference ID.',
+   '5. Keep every pass valid until the outcome. Answer any ICA request for more documents quickly.','',
+   'Not affiliated with ICA. Confirm requirements at www.ica.gov.sg.');
+  return L.join('\r\n');
+}
+async function buildZip(btn){
+  const m=$('packMsg');
+  if(!window.JSZip){m.textContent='The zip tool did not load. Check your internet connection and reload the page.';return}
+  btn.disabled=true;btn.textContent='Preparing pack…';
+  try{
+    const zip=new JSZip();let n=0,miss=0;
+    const ppl=sortedPeople();
+    for(let pi=0;pi<ppl.length;pi++){const p=ppl[pi];const docs=docsFor(p);const folder=zip.folder(String(pi+1)+'_'+slug(pname(p)));
+      for(let i=0;i<docs.length;i++){const x=docs[i];const f=S.files[x.key];if(!f)continue;
+        const blob=await idbGet(x.key);if(blob){folder.file(packName(p,i,x,f),blob);n++}else miss++}}
+    zip.file('00_Summary.txt',packSummary());
+    const out=await zip.generateAsync({type:'blob'});
+    saveBlob(out,'pr-ready-pack-'+new Date().toISOString().slice(0,10)+'.zip');
+    m.textContent='Pack downloaded with '+n+' file'+(n===1?'':'s')+(miss?'. '+miss+' file(s) were no longer in this browser; attach them again.':'.');
+  }catch(e){m.textContent='The pack could not be built in this browser. Try again, or use a different browser.'}
+  finally{btn.disabled=false;btn.textContent='Download submission pack (.zip)'}
 }
 
 render();
