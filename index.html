@@ -123,10 +123,8 @@ footer a{color:var(--accent)}
 .local{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--good-soft)}
 .local b{display:flex;gap:6px;align-items:center}
 .local span{font-size:13px}
-.trust{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
-.trust div{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:10px;background:var(--accent-soft)}
-.trust b{font-family:var(--f-display);font-size:15px}
-.trust span{font-size:14px}
+.trust{list-style:none;margin:20px 0 0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 28px;font-size:14px;color:var(--muted)}
+.trust b{color:var(--ink);font-weight:600}
 .prow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;align-items:center}
 .prow .dn{word-break:break-all}
 .chk{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
@@ -144,22 +142,14 @@ footer a{color:var(--accent)}
       <h1>PR Ready SG</h1>
       <p class="lede">Describe your household once. Get one checklist per person, the dates your documents must fall within, the fees, and a passport-photo check before you open the e-Service.</p>
     </div>
-    <div class="disclaim">Independent prep aid, not affiliated with ICA. Everything you enter stays in this browser. Requirements change; confirm against ICA's own checklist before you submit.</div>
   </header>
 
-  <section class="pains" aria-label="Common pain points">
-    <div class="pain"><b>Which column am I?</b><span>ICA's checklist splits documents across applicants, non-applying spouse and sponsor, with "only if" conditions.</span><span class="fix">→ Per-person checklist</span></div>
-    <div class="pain"><b>Who logs in, and when?</b><span>Sponsors fill the form, but each applicant must log in to declare before it can be submitted.</span><span class="fix">→ Who-does-what plan</span></div>
-    <div class="pain"><b>Documents expire</b><span>The employment letter must be dated within 3 months of submission; payslips cover the last 6 months.</span><span class="fix">→ Date window calculator</span></div>
-    <div class="pain"><b>Translations get rejected</b><span>Only embassy, notary-public or attested/notarised translations are accepted.</span><span class="fix">→ Translation flags</span></div>
-    <div class="pain"><b>Photo specs are strict</b><span>400 × 514 px, colour, recent, plain white background.</span><span class="fix">→ Photo checker</span></div>
-  </section>
 
-  <section class="trust" aria-label="Before you start">
-    <div><b>You submit your own application</b><span>Log in to ICA's e-Service with your own Singpass. Never give your Singpass login to anyone, including people helping you.</span></div>
-    <div><b>No one can improve your chances</b><span>ICA assesses every application on its merits and does not endorse consultants. Be wary of anyone who promises approval.</span></div>
-    <div><b>Pay ICA only through ICA</b><span>The S$100 fee per applicant is paid on ICA's e-Service when you submit. Check your status and any approval letter on MyICA.</span></div>
-  </section>
+  <ul class="trust" aria-label="Before you start">
+    <li><b>Submit it yourself</b> with your own Singpass. Never share it.</li>
+    <li><b>No one can improve your chances.</b> ICA endorses no consultants.</li>
+    <li><b>Pay only on ICA's e-Service.</b> S$100 per applicant.</li>
+  </ul>
 
   <div class="grid">
     <!-- SETUP -->
@@ -266,6 +256,7 @@ footer a{color:var(--accent)}
   </div>
 
   <footer>
+    <span>Independent prep aid, not affiliated with ICA. Everything you enter stays in this browser. Requirements change, so confirm against ICA's checklist before you submit.</span>
     <span>Sources: ICA Permanent Residence Application page (updated 30 Oct 2026) and ICA Document Checklist for Permanent Residence.</span>
     <span><a href="https://www.ica.gov.sg/information-and-e-services/citizenship-and-permanent-residence/permanent-residence/permanent-residence-application" target="_blank" rel="noopener">ica.gov.sg · Permanent Residence Application</a> · <a href="https://www.ica.gov.sg/docs/ica/ica/ipses/pr-document-checklist.pdf" target="_blank" rel="noopener">ICA document checklist (PDF)</a></span>
   </footer>
