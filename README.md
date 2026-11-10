@@ -1,6 +1,6 @@
 # PR Ready SG
 
-A browser tool that helps households prepare a Singapore Permanent Residence application on ICA's e-PR e-Service.
+A guided browser tool (start page, then Household → Documents → Submission pack) that helps households prepare a Singapore Permanent Residence application on ICA's e-PR e-Service.
 
 - Per-person document checklist based on ICA's published checklist
 - Date windows (employment letter, pay slips), fee estimate, who-does-what timeline

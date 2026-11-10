@@ -3,611 +3,621 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Prepare your Singapore PR (e-PR) application: per-person document checklist, date windows, fees and photo check. Everything stays on your device.">
 <title>PR Ready SG</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<meta name="description" content="Prepare your Singapore PR (e-PR) application: a document checklist for each person, date checks, a passport photo check and a submission pack. Everything stays on your device.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: a household "dossier" — setup column on the left, generated checklist on the right; stacks on phones */
+/* Layout: a guided three-step flow (Household → Documents → Submission pack) behind a calm start page */
 :root{
-  --paper:#f5f6f8; --card:#ffffff; --ink:#18213a; --muted:#5b6478; --line:#dde1ea;
-  --accent:#1d4ed8; --accent-soft:#e6edff; --stamp:#b4232c; --stamp-soft:#fbe9ea;
-  --good:#17804a; --good-soft:#e3f4ea; --warn:#a15c00; --warn-soft:#fdf1dc;
+  --bg:#f6f7f9;--card:#ffffff;--ink:#142033;--muted:#4b5668;--faint:#5a6577;
+  --line:#e3e7ee;--line2:#eef1f5;--field:#c9d0db;--empty:#c3cad5;
+  --accent:#0b5f5f;--accent-ink:#ffffff;--accent-soft:#e2f0ef;--accent-tint:#f2f8f8;
+  --warn:#b46a00;--warn-ink:#6e3f00;--warn-soft:#fdf3e2;--bad:#a3262e;--bad-soft:#fbe8e9;
+  --panel:#142033;--panel-ink:#f2f4f7;--panel-muted:#aab4c4;--panel-cta:#5fc4bd;--panel-cta-ink:#0d2a29;--panel-warn:#ffd79c;
+  --shadow:rgba(20,32,51,.30);
   --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --f-body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --f-body:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#0f1422; --card:#161d2f; --ink:#e7eaf3; --muted:#9aa3b8; --line:#2a3350;
-  --accent:#7aa2ff; --accent-soft:#1c2a52; --stamp:#ff7b83; --stamp-soft:#3a1c22;
-  --good:#5fd394; --good-soft:#143224; --warn:#f0b45a; --warn-soft:#3a2a12; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0f1422; --card:#161d2f; --ink:#e7eaf3; --muted:#9aa3b8; --line:#2a3350;
-  --accent:#7aa2ff; --accent-soft:#1c2a52; --stamp:#ff7b83; --stamp-soft:#3a1c22;
-  --good:#5fd394; --good-soft:#143224; --warn:#f0b45a; --warn-soft:#3a2a12; color-scheme:dark}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0e141e;--card:#161e2b;--ink:#e8ecf2;--muted:#a9b3c3;--faint:#9aa4b5;
+  --line:#263044;--line2:#202a3b;--field:#3a465c;--empty:#4b5770;
+  --accent:#5fc4bd;--accent-ink:#0d2a29;--accent-soft:#163231;--accent-tint:#122523;
+  --warn:#f0b45a;--warn-ink:#f6cc8f;--warn-soft:#33270f;--bad:#ff8a91;--bad-soft:#3a1c20;
+  --panel:#0a1019;--panel-ink:#eef1f6;--panel-muted:#9aa4b5;--panel-cta:#5fc4bd;--panel-cta-ink:#0d2a29;--panel-warn:#ffd79c;
+  --shadow:rgba(0,0,0,.6);color-scheme:dark}}
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
-.wrap{max-width:1180px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
-h1{font-size:clamp(30px,5vw,44px);font-weight:700;letter-spacing:-.01em}
-h2{font-size:20px;font-weight:700}
-h3{font-size:16px;font-weight:700}
-.lede{color:var(--muted);max-width:62ch;margin:8px 0 0}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+[hidden]{display:none!important}
+img,canvas{max-width:100%}
+a{color:var(--accent)}
+h1,h2,h3{margin:0;text-wrap:balance}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+@media (max-width:560px){.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
-header.top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
-.disclaim{font-size:13px;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:8px 12px;max-width:380px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.hint{font-size:14px;color:var(--muted)}
 
-.pains{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
-.pain{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
-.pain b{font-family:var(--f-display);font-size:15px}
-.pain span{font-size:14px;color:var(--muted)}
-.pain .fix{font-size:13px;color:var(--accent);font-weight:600}
+/* header */
+.top{background:var(--card);border-bottom:1px solid var(--line)}
+.top .wrap{padding-block:14px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.logo{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--ink);font-family:var(--f-display);font-size:20px;font-weight:700}
+.logo svg rect{fill:var(--accent)}.logo svg path{stroke:var(--accent-ink)}
+.steps{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:14px}
+.steps .bar{width:18px;height:1px;background:var(--empty)}
+.step{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border-radius:999px;color:var(--muted);text-decoration:none}
+.step.cur{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.step.done{color:var(--accent)}
+.step .n{font-family:var(--f-mono)}
+.local{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted)}
+@media (max-width:640px){.local{display:none}.steps .bar{width:8px}.step{padding:6px 8px}.top .wrap{row-gap:10px}.topnav a:not(.btn){display:none}}
+.topnav{display:flex;gap:20px;align-items:center;flex-wrap:wrap;font-size:15px}
+.topnav a{color:var(--muted);text-decoration:none}
 
-.grid{margin-top:28px;display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:24px;align-items:start}
-@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.setup{position:sticky;top:16px}
-@media (max-width:860px){.setup{position:static}}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label,.field .lbl{font-weight:600;font-size:14px}
-select,input[type=text],input[type=date],input[type=number]{font:inherit;font-size:15px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
-select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.hint{font-size:13px;color:var(--muted)}
-.toggles{display:flex;flex-direction:column;gap:6px}
-.tog{display:flex;gap:8px;align-items:flex-start;font-size:14px}
-.tog input{margin-top:3px;accent-color:var(--accent)}
-.row{display:flex;gap:8px;flex-wrap:wrap}
-button{font:inherit;font-size:14px;font-weight:600;border-radius:8px;padding:8px 12px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
-button.primary{background:var(--accent);border-color:var(--accent);color:var(--card)}
-button.ghost{background:transparent}
-button.x{padding:2px 8px;font-size:13px;color:var(--stamp);border-color:transparent;background:transparent}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:600;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid var(--field);background:var(--card);color:var(--ink);text-decoration:none;cursor:pointer;position:relative}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.sm{min-height:40px;padding:0 14px;font-size:14px;border-radius:10px;color:var(--accent)}
+.btn.ghost{border-style:dashed;color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.btn:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.linkbtn{font:inherit;font-size:14px;background:none;border:none;padding:8px 4px;color:var(--muted);cursor:pointer;min-height:40px}
+.linkbtn.danger{color:var(--bad)}
+.linkbtn.accent{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.topnav .btn{min-height:42px;color:var(--accent-ink)}
 
-.person{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--paper)}
-.person .ph{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
-.chip.sp{background:var(--warn-soft);color:var(--warn)}
-.chip.na{background:var(--line);color:var(--muted)}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.pgrid .full{grid-column:1/-1}
+/* start page */
+.hero{padding-block:72px 56px;display:flex;flex-wrap:wrap;gap:56px;align-items:center}
+.hero .copy{flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.hero h1{font-family:var(--f-display);font-size:clamp(36px,5.2vw,56px);line-height:1.05;font-weight:700;letter-spacing:-.02em}
+.hero p{margin:0;font-size:19px;color:var(--muted);max-width:34em}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.preview{flex:1 1 380px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 24px 48px -32px var(--shadow)}
+.band{background:var(--card);border-block:1px solid var(--line)}
+.band .wrap{padding-block:64px;display:flex;flex-direction:column;gap:32px}
+.h2{font-family:var(--f-display);font-size:clamp(28px,3.4vw,36px);font-weight:700;letter-spacing:-.01em}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px}
+.three div{display:flex;flex-direction:column;gap:8px}
+.three h3{font-size:20px;font-weight:600}
+.three p{margin:0;color:var(--muted)}
+.privacy{padding-block:64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px}
+.privacy p{margin:0;color:var(--muted)}
+.dots{display:flex;flex-direction:column;gap:16px;margin:0;padding:0;list-style:none}
+.dots li{display:grid;grid-template-columns:8px minmax(0,1fr);gap:12px}
+.dots li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:9px}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:24px;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;font-size:14px;color:var(--faint)}
 
-.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.stat{display:flex;flex-direction:column;gap:2px}
-.stat .v{font-family:var(--f-display);font-size:26px;font-weight:700}
-.meter{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
-.meter i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
+/* app pages */
+.page{padding-block:40px 64px;display:flex;flex-direction:column;gap:24px}
+.pagehead{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+.pagehead h1{font-family:var(--f-display);font-size:clamp(30px,4vw,40px);font-weight:700;letter-spacing:-.01em}
+.pagehead p{margin:6px 0 0;color:var(--muted)}
+.cols{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.colmain{flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.colside{flex:1 1 300px;max-width:390px;min-width:0;display:flex;flex-direction:column;gap:16px}
+@media (max-width:960px){.colside{max-width:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card h2{font-size:18px;font-weight:600}
+@media (max-width:560px){.card{padding:18px}}
+
+.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.route{display:flex;gap:12px;padding:14px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:var(--card)}
+.route:has(input:checked){border:2px solid var(--accent);background:var(--accent-tint);padding:13px}
+.route input{margin-top:4px;accent-color:var(--accent);flex:none}
+.route small{display:block;font-size:14px;color:var(--muted)}
+
+.people{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.person{border-bottom:1px solid var(--line2)}
+.person:last-child{border-bottom:none}
+.prow{display:grid;grid-template-columns:minmax(0,1.3fr) 76px minmax(0,1fr) minmax(0,1.4fr);gap:12px;padding:12px 16px;align-items:center}
+@media (max-width:720px){.prow{grid-template-columns:minmax(0,1fr) 76px;}.prow .role,.prow .sp{grid-column:1/-1}}
+.field{font:inherit;font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--field);border-radius:10px;min-height:42px;padding:0 12px;width:100%}
+select.field{padding-right:8px}
+.role{font-size:14px;color:var(--muted)}
+.sp{font-size:14px;display:flex;gap:8px;align-items:center}
+.sp.ok{color:var(--accent);font-weight:600}
+.sp.need{color:var(--warn-ink)}
+.sp input{accent-color:var(--accent);width:18px;height:18px}
+.person details{padding:0 16px 12px}
+.person summary{cursor:pointer;font-size:14px;color:var(--accent);padding:4px 0;width:max-content}
+.more{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 16px;padding-top:10px;align-items:end}
+.more label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.more .tog{display:flex;gap:8px;align-items:center;font-size:14px;min-height:42px}
+.more .tog input{accent-color:var(--accent);width:18px;height:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:14px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.datecard{flex-direction:row;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+.datecard input{max-width:240px;min-height:48px}
+
+.summary{background:var(--panel);color:var(--panel-ink);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.summary h2{font-family:var(--f-display);font-size:22px;font-weight:600}
+.kv{display:flex;flex-direction:column;gap:12px;font-size:15px}
+.kv div{display:flex;justify-content:space-between;gap:12px}
+.kv span:first-child{color:var(--panel-muted)}
+.kv span:last-child{text-align:right}
+.pwarn{font-size:14px;background:rgba(255,196,120,.14);color:var(--panel-warn);border-radius:10px;padding:10px 12px}
+.ctalight{display:flex;justify-content:center;align-items:center;min-height:50px;border-radius:12px;background:var(--panel-cta);color:var(--panel-cta-ink);font-weight:600;text-decoration:none;border:none;font:inherit;font-weight:600;cursor:pointer;width:100%}
+.ctalight:disabled{opacity:.5;cursor:not-allowed}
+.smallnote{font-size:13px;color:var(--faint);margin:0;padding:0 4px}
+
+/* documents */
+.progress{display:flex;flex-direction:column;gap:6px;min-width:240px}
+.progress .t{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.meter{height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);transition:width .3s}
 @media (prefers-reduced-motion:reduce){.meter i{transition:none}}
-
-.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.tabs button{border:none;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:var(--muted);padding:10px 12px}
-.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--stamp)}
-
-.who{display:flex;flex-direction:column;gap:18px}
-.who-block{display:flex;flex-direction:column;gap:8px}
-.who-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
-.doc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:8px}
-.doc.done{background:var(--good-soft);border-color:transparent}
-.doc.done .dt{text-decoration:line-through;text-decoration-color:var(--good)}
-.doc input{width:18px;height:18px;margin-top:2px;accent-color:var(--good)}
+.pnav{flex:1 1 220px;max-width:260px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.pbtn{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid transparent;background:transparent;font:inherit;color:var(--ink);text-align:left;cursor:pointer;width:100%}
+.pbtn[aria-current=true]{background:var(--card);border-color:var(--accent)}
+.pbtn small{display:block;font-size:13px;color:var(--muted)}
+.pbtn .mono{font-size:14px;color:var(--muted)}
+.pbtn[aria-current=true] .mono{color:var(--accent)}
+.photobtn{margin-top:12px;justify-content:flex-start;border:1px dashed var(--empty);color:var(--accent);font-weight:600;font-size:15px}
+@media (max-width:820px){.pnav{max-width:none;flex-direction:row;overflow-x:auto;flex-basis:100%}.pbtn{width:auto;flex:none}.photobtn{margin-top:0}}
+.dmain{flex:999 1 540px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.banner{font-size:15px;background:var(--warn-soft);color:var(--warn-ink);border-radius:12px;padding:12px 16px}
+.banner.info{background:var(--accent-soft);color:var(--ink)}
+.group{display:flex;flex-direction:column;gap:8px}
+.list{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.doc{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:14px;padding:16px;align-items:center;border-bottom:1px solid var(--line2)}
+.doc:last-child{border-bottom:none}
+@media (max-width:560px){.doc{grid-template-columns:24px minmax(0,1fr);padding:14px}.doc .dact{grid-column:2}}
+.tick{position:relative;width:24px;height:24px;display:block}
+.tick input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:24px;height:24px}
+.tick:focus-within{outline:2px solid var(--accent);outline-offset:2px;border-radius:50%}
+.tick svg{display:block}
 .dt{font-weight:600}
-.dn{font-size:13px;color:var(--muted)}
-.flag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:1px}
-.flag.t{background:var(--warn-soft);color:var(--warn)}
-.flag.d{background:var(--stamp-soft);color:var(--stamp)}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--warn-soft);color:var(--warn-ink);margin-left:6px;vertical-align:1px}
+.tag.plain{background:var(--line2);color:var(--muted)}
+.dn{font-size:14px;color:var(--muted);overflow-wrap:anywhere}
+.dact{display:flex;gap:4px;align-items:center;justify-content:flex-end}
+.footnav{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:8px}
+.footnav>a:first-child{font-weight:600;text-decoration:none}
+.photo{display:flex;flex-direction:column;gap:12px}
+.photo .res{display:flex;flex-direction:column;gap:6px}
+.photo canvas{max-width:140px;border:1px solid var(--line);border-radius:8px}
+.ok{color:var(--accent);font-weight:600}.warn{color:var(--warn-ink);font-weight:600}.bad{color:var(--bad);font-weight:600}
 
-.note{border-left:3px solid var(--stamp);background:var(--stamp-soft);padding:10px 12px;border-radius:0 8px 8px 0;font-size:14px}
-.note.info{border-left-color:var(--accent);background:var(--accent-soft)}
-.steps{display:flex;flex-direction:column;gap:0;counter-reset:s}
-.step{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
-.step:last-child{border-bottom:none}
-.step .when{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
-table{border-collapse:collapse;width:100%;font-size:14px}
-th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
-td.n,th.n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.tbl{overflow-x:auto}
-.drop{border:2px dashed var(--line);border-radius:10px;padding:20px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center}
-.res{display:flex;flex-direction:column;gap:6px}
-.ok{color:var(--good);font-weight:600}.bad{color:var(--stamp);font-weight:600}.mid{color:var(--warn);font-weight:600}
-.preview{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
-.preview canvas{max-width:160px;border:1px solid var(--line);border-radius:6px}
-footer{margin-top:32px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
-footer a{color:var(--accent)}
-.ex{font-size:12px;font-weight:600;color:var(--warn);background:var(--warn-soft);padding:2px 8px;border-radius:999px}
-.doc{grid-template-columns:auto minmax(0,1fr) auto}
-.doc label{cursor:pointer}
-.att{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:12px;min-width:0}
-.att .fn{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--good);font-weight:600}
-@media (max-width:560px){.doc{grid-template-columns:auto minmax(0,1fr)}.att{grid-column:2;align-items:flex-start}}
-.btnlike{position:relative;display:inline-flex;align-items:center;font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
-.btnlike input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-.btnlike:focus-within{outline:2px solid var(--accent);outline-offset:2px}
-.local{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--good-soft)}
-.local b{display:flex;gap:6px;align-items:center}
-.local span{font-size:13px}
-.trust{list-style:none;margin:20px 0 0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 28px;font-size:14px;color:var(--muted)}
-.trust b{color:var(--ink);font-weight:600}
-.prow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;align-items:center}
-.prow .dn{word-break:break-all}
-.chk{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
-.chk li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;font-size:14px}
-#bkText{font-family:var(--f-mono);font-size:12px;width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px}
+/* pack */
+.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.checks li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:12px;align-items:start}
+.checks svg{margin-top:2px}
+.tree{background:var(--bg);border-radius:12px;padding:16px 18px;font-family:var(--f-mono);font-size:14px;line-height:1.9;overflow-x:auto;white-space:nowrap}
+.tree .in{padding-left:24px}
+.tree .dim{color:var(--faint)}
+ol.day{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.dates{display:flex;flex-direction:column}
+.dates div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line2);font-size:15px}
+.dates div:last-child{border-bottom:none}
+.dates .mono{font-size:13px;color:var(--faint);padding-top:2px}
+.summary p{margin:0;font-size:15px;color:var(--panel-muted)}
+#msg{font-size:14px;color:var(--muted)}
 </style>
-
-<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div>
-      <div class="label">Singapore Permanent Residence · e-PR prep</div>
-      <h1>PR Ready SG</h1>
-      <p class="lede">Describe your household once. Get one checklist per person, the dates your documents must fall within, the fees, and a passport-photo check before you open the e-Service.</p>
-    </div>
-  </header>
-
-
-  <ul class="trust" aria-label="Before you start">
-    <li><b>Submit it yourself</b> with your own Singpass. Never share it.</li>
-    <li><b>No one can improve your chances.</b> ICA endorses no consultants.</li>
-    <li><b>Pay only on ICA's e-Service.</b> S$100 per applicant.</li>
-  </ul>
-
-  <div class="grid">
-    <!-- SETUP -->
-    <aside class="panel setup" aria-label="Your household">
-      <div class="row" style="justify-content:space-between;align-items:center">
-        <h2>Your household</h2>
-        <span class="ex" id="exTag">Example data</span>
-      </div>
-      <div class="field">
-        <label for="scheme">Applying as</label>
-        <select id="scheme">
-          <option value="ep">Employment Pass / S Pass holder</option>
-          <option value="spouse">Spouse of a Singapore Citizen or PR</option>
-          <option value="child">Unmarried child (below 21) of an SC or PR</option>
-          <option value="parent">Aged parent of a Singapore Citizen</option>
-          <option value="student">Student in Singapore</option>
-        </select>
-        <span class="hint" id="schemeHint"></span>
-      </div>
-      <div class="field">
-        <label for="target">Planned submission date</label>
-        <input type="date" id="target">
-      </div>
-      <div class="field">
-        <span class="lbl">Marriage</span>
-        <select id="marriage" aria-label="Marriage">
-          <option value="none">Not married</option>
-          <option value="sg">Married, registered in Singapore</option>
-          <option value="overseas">Married, registered overseas</option>
-        </select>
-      </div>
-      <div class="field">
-        <span class="lbl">Any of these apply?</span>
-        <div class="toggles">
-          <label class="tog"><input type="checkbox" id="xDivorce"> A previous divorce (anyone in the household)</label>
-          <label class="tog"><input type="checkbox" id="xSeparated"> Currently separated</label>
-          <label class="tog"><input type="checkbox" id="xName"> A change of name</label>
-          <label class="tog"><input type="checkbox" id="xPrevKids"> Children from a previous marriage</label>
-          <label class="tog"><input type="checkbox" id="xLang"> Some documents are not in English</label>
-        </div>
-      </div>
-      <div class="field">
-        <div class="row" style="justify-content:space-between;align-items:center">
-          <span class="lbl">People</span>
-          <select id="addRole" aria-label="Add person" style="width:auto">
-            <option value="">+ Add person</option>
-            <option value="spouse">Applying spouse</option>
-            <option value="child">Applying child</option>
-            <option value="nonspouse">Non-applying spouse</option>
-          </select>
-        </div>
-        <div id="people" class="who"></div>
-      </div>
-      <div class="row">
-        <button class="ghost" id="resetEx">Load example</button>
-        <button class="ghost" id="clearAll">Start blank</button>
-      </div>
-      <div class="local" aria-label="Your data">
-        <b><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>Stored on this device only</b>
-        <span>Your answers and attached files stay in this browser. Nothing is sent to ICA or anyone else. Clearing this browser's site data deletes them, so keep your originals and a backup.</span>
-        <div class="row">
-          <button id="bkCopy">Download backup</button>
-          <label class="btnlike">Restore backup<input type="file" id="bkFile" accept=".json,application/json"></label>
-          <button class="x" id="wipe">Delete all data</button>
-        </div>
-        <textarea id="bkText" rows="3" readonly hidden aria-label="Backup text"></textarea>
-        <span id="localMsg" class="hint" aria-live="polite"></span>
-      </div>
-    </aside>
-
-    <!-- OUTPUT -->
-    <main class="panel" aria-label="Your plan">
-      <div class="summary">
-        <div class="stat"><span class="label">Ready</span><span class="v mono" id="sReady">0%</span><div class="meter"><i id="sMeter"></i></div></div>
-        <div class="stat"><span class="label">Documents</span><span class="v mono" id="sDocs">0</span><span class="hint" id="sDocsH"></span></div>
-        <div class="stat"><span class="label">Paid at submission</span><span class="v mono" id="sFee">S$0</span><span class="hint">non-refundable</span></div>
-        <div class="stat"><span class="label">Outcome expected</span><span class="v mono" id="sOut">—</span><span class="hint">~6 months, may be longer</span></div>
-      </div>
-
-      <div class="tabs" role="tablist">
-        <button role="tab" aria-selected="true" data-tab="check" id="tab-check">Checklist</button>
-        <button role="tab" aria-selected="false" data-tab="plan" id="tab-plan">Who &amp; when</button>
-        <button role="tab" aria-selected="false" data-tab="fees" id="tab-fees">Fees</button>
-        <button role="tab" aria-selected="false" data-tab="photo" id="tab-photo">Photo check</button>
-        <button role="tab" aria-selected="false" data-tab="pack" id="tab-pack">Submission pack</button>
-      </div>
-
-      <section id="pane-check" role="tabpanel"><div id="checklist" class="who"></div></section>
-      <section id="pane-plan" role="tabpanel" hidden><div id="plan" class="who"></div></section>
-      <section id="pane-fees" role="tabpanel" hidden><div id="fees"></div></section>
-      <section id="pane-pack" role="tabpanel" hidden><div id="pack" class="who"></div></section>
-      <section id="pane-photo" role="tabpanel" hidden>
-        <div class="who">
-          <p class="hint" style="margin:0">Your photo is checked in this browser only. It is not uploaded anywhere.</p>
-          <div class="drop">
-            <strong>Choose a passport photo (JPG or PNG)</strong>
-            <input type="file" id="photo" accept="image/jpeg,image/png" aria-label="Photo file">
-          </div>
-          <div class="preview"><canvas id="pc" hidden></canvas><div id="photoRes" class="res"></div></div>
-          <div class="note info">ICA asks for a recent colour photo, 400 × 514 pixels, full face, white background, no headgear unless worn for religious or racial customs (face must stay visible).</div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <footer>
-    <span>Independent prep aid, not affiliated with ICA. Everything you enter stays in this browser. Requirements change, so confirm against ICA's checklist before you submit.</span>
-    <span>Sources: ICA Permanent Residence Application page (updated 30 Oct 2026) and ICA Document Checklist for Permanent Residence.</span>
-    <span><a href="https://www.ica.gov.sg/information-and-e-services/citizenship-and-permanent-residence/permanent-residence/permanent-residence-application" target="_blank" rel="noopener">ica.gov.sg · Permanent Residence Application</a> · <a href="https://www.ica.gov.sg/docs/ica/ica/ipses/pr-document-checklist.pdf" target="_blank" rel="noopener">ICA document checklist (PDF)</a></span>
-  </footer>
-</div>
+<header class="top"><div class="wrap" id="top"></div></header>
+<main id="view"></main>
+<footer><div class="wrap">
+  <span>Independent preparation aid. Not affiliated with ICA.</span>
+  <span>Based on ICA's published checklist. Always confirm at <a href="https://www.ica.gov.sg/information-and-e-services/citizenship-and-permanent-residence/permanent-residence/permanent-residence-application" target="_blank" rel="noopener">ica.gov.sg</a> before you submit.</span>
+</div></footer>
+<input type="file" id="openFile" accept=".json,application/json" hidden>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 (function(){
-const KEY='prready.v1';
+const KEY='prready.v2', OLDKEY='prready.v1';
+const $=id=>document.getElementById(id);
 const SCHEMES={
-  ep:{main:'EP / S Pass holder',sponsor:null,hint:'No sponsor needed. You fill in and submit the form yourself, and can include your spouse and unmarried children below 21.'},
-  spouse:{main:'Applying spouse',sponsor:'SC / PR spouse (sponsor)',hint:'Your SC or PR spouse is the sponsor and fills in the form for you.'},
-  child:{main:'Applying child',sponsor:'SC / PR parent (sponsor)',hint:'Your SC or PR parent is the sponsor and fills in the form.'},
-  parent:{main:'Aged parent',sponsor:'SC child aged 21+ (sponsor)',hint:'Your Singapore Citizen child, aged 21 or above, sponsors and fills in the form.'},
-  student:{main:'Student',sponsor:null,hint:'Must have passed at least one national exam (PSLE, N/O/A Level) or be in the Integrated Programme.'}
+  ep:{label:'Employment Pass or S Pass',main:'Main applicant',sponsor:null,hint:'No sponsor. You submit for yourself and your family.'},
+  spouse:{label:'Spouse of a Citizen or PR',main:'Applying spouse',sponsor:'Sponsor (your spouse)',hint:'Your Citizen or PR spouse sponsors and fills in the form.'},
+  child:{label:'Child of a Citizen or PR',main:'Applying child',sponsor:'Sponsor (your parent)',hint:'Unmarried and below 21. Your Citizen or PR parent sponsors.'},
+  parent:{label:'Parent of a Citizen',main:'Aged parent',sponsor:'Sponsor (your child, 21+)',hint:'Sponsored by your Citizen child aged 21 or above.'},
+  student:{label:'Student in Singapore',main:'Student',sponsor:null,hint:'Passed a national exam (PSLE, N, O or A Level) or in the IP.'}
 };
-const ROLE_LABEL={main:'Main applicant',spouse:'Applying spouse',child:'Applying child',nonspouse:'Non-applying spouse',sponsor:'Sponsor'};
+const ROLE={main:'Main applicant',spouse:'Spouse',child:'Child',nonspouse:'Spouse (not applying)',sponsor:'Sponsor'};
+const VIEWS=['start','household','documents','pack'];
+const STEPS=[['household','Household'],['documents','Documents'],['pack','Submission pack']];
 
-function iso(d){return d.toISOString().slice(0,10)}
+/* ---------- helpers ---------- */
+const iso=d=>d.toISOString().slice(0,10);
 function addMonths(d,m){const x=new Date(d);x.setMonth(x.getMonth()+m);return x}
-function fmt(d){return d.toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'})}
-function uid(){return Math.random().toString(36).slice(2,8)}
+const fmt=d=>d.toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'});
+const fmtM=d=>d.toLocaleDateString('en-SG',{month:'short',year:'numeric'});
+const uid=()=>Math.random().toString(36).slice(2,8);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isApplicant=p=>['main','spouse','child'].includes(p.role);
+const pname=p=>(p.name&&p.name.trim())||(p.role==='main'?SCHEMES[S.scheme].main:ROLE[p.role]);
+const roleText=p=>p.role==='main'?SCHEMES[S.scheme].main:p.role==='sponsor'?SCHEMES[S.scheme].sponsor:ROLE[p.role];
+const target=()=>new Date((S.target||iso(addMonths(new Date(),1)))+'T00:00:00');
+const ICON={
+  done:'<svg aria-hidden="true" width="22" height="22" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="var(--accent)"/><path d="M6 10.5l2.6 2.6L14 7.6" stroke="var(--accent-ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  warn:'<svg aria-hidden="true" width="22" height="22" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="none" stroke="var(--warn)" stroke-width="2"/><path d="M10 5.5v5M10 13.5v.5" stroke="var(--warn)" stroke-width="2" stroke-linecap="round"/></svg>',
+  todo:'<svg aria-hidden="true" width="22" height="22" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="none" stroke="var(--empty)" stroke-width="2"/></svg>',
+  lock:'<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>',
+  logo:'<svg aria-hidden="true" width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="1" y="1" width="26" height="26" rx="7"/><path d="M8 14.5l4 4 8-9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  cam:'<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>'
+};
 
-function example(){
-  return {scheme:'ep',target:iso(addMonths(new Date(),1)),marriage:'overseas',
-    x:{divorce:false,separated:false,name:false,prevKids:false,lang:true},
-    people:[
-      {id:'p1',role:'main',name:'Wei Ling',sex:'f',age:34,bornSG:false,work:'employed',overseas:false,singpass:true},
-      {id:'p2',role:'spouse',name:'Arjun',sex:'m',age:36,bornSG:false,work:'employed',overseas:true},
-      {id:'p3',role:'child',name:'Mei',sex:'f',age:6,bornSG:true,work:'none',overseas:false}
-    ],checked:{},files:{},example:true};
-}
-function blank(){return {scheme:'ep',target:iso(addMonths(new Date(),1)),marriage:'none',x:{divorce:false,separated:false,name:false,prevKids:false,lang:false},people:[{id:uid(),role:'main',name:'',sex:'f',age:30,bornSG:false,work:'employed',overseas:false}],checked:{},files:{},example:false}}
-
-let S;
-try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
-if(!S||!S.people)S=example();
-if(!S.files)S.files={};
-
-/* ---------- local file vault (IndexedDB, this browser only) ---------- */
-let dbp=null;
-function db(){if(dbp)return dbp;dbp=new Promise((res,rej)=>{try{const r=indexedDB.open('prready-files',1);r.onupgradeneeded=()=>r.result.createObjectStore('files');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}});dbp.catch(()=>{dbp=null});return dbp}
-async function idb(mode,fn){const d=await db();return new Promise((res,rej)=>{const tx=d.transaction('files',mode);fn(tx.objectStore('files'));tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);tx.onabort=()=>rej(tx.error)})}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function msg(s){const m=document.getElementById('localMsg');if(m)m.textContent=s}
-function attHtml(k){
-  const f=S.files[k];
-  if(f)return `<div class="att"><span class="fn" title="${esc(f.name)}">${esc(f.name)}</span><span class="hint mono">${Math.max(1,Math.round(f.size/1024))} KB · on this device</span><button class="x" data-rm="${esc(k)}" aria-label="Remove ${esc(f.name)}">Remove</button></div>`;
-  return `<div class="att"><label class="btnlike">Attach file<input type="file" data-up="${esc(k)}" accept="application/pdf,image/jpeg,image/png"></label></div>`;
-}
-async function storeFile(k,file){
-  if(!file)return;
-  try{await idb('readwrite',st=>st.put(file,k));S.files[k]={name:file.name,size:file.size,type:file.type,at:Date.now()};S.checked[k]=true;save();renderOut();msg('Saved '+file.name+' in this browser.')}
-  catch(e){msg("This browser blocked local storage, so the file wasn't kept. Use a normal (not private) window.")}
-}
-async function removeFile(k){try{await idb('readwrite',st=>st.delete(k))}catch(e){}delete S.files[k];save();renderOut();msg('File removed from this browser.')}
-let wipeArmed=false;
-async function wipeAll(btn){
-  if(!wipeArmed){wipeArmed=true;btn.textContent='Click again to delete everything';setTimeout(()=>{wipeArmed=false;btn.textContent='Delete all data'},4000);return}
-  wipeArmed=false;btn.textContent='Delete all data';
-  try{localStorage.removeItem(KEY)}catch(e){}
-  try{await idb('readwrite',st=>st.clear())}catch(e){}
-  S=blank();render();msg('All answers and files were deleted from this browser.');
-}
-function copyBackup(){
-  const data=JSON.stringify({...S,files:{},app:'pr-ready',v:1});
-  const fallback=()=>{const ta=document.getElementById('bkText');ta.hidden=false;ta.value=data;ta.focus();ta.select();msg('Copy the text above and save it as a .json file.')};
-  try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='pr-ready-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);msg('Backup downloaded. Attached files are not included.')}catch(e){fallback()}
-}
-function restoreBackup(input){
-  const f=input.files[0];input.value='';if(!f)return;
-  f.text().then(txt=>{const o=JSON.parse(txt);if(!o||!Array.isArray(o.people))throw new Error('bad');
-    o.files=S.files;o.checked=o.checked||{};o.x=Object.assign({divorce:false,separated:false,name:false,prevKids:false,lang:false},o.x||{});o.example=false;S=o;render();msg('Backup restored. Files already in this browser were kept.')})
-   .catch(()=>msg("That file isn't a PR Ready backup."));
-}
+/* ---------- state ---------- */
+function blank(){return {scheme:'ep',target:iso(addMonths(new Date(),1)),marriage:'none',x:{divorce:false,separated:false,name:false,prevKids:false,lang:false},
+  people:[{id:uid(),role:'main',name:'',sex:'f',age:30,bornSG:false,work:'employed',overseas:false,singpass:false}],checked:{},files:{},cur:null,example:false}}
+function example(){return {scheme:'ep',target:iso(addMonths(new Date(),1)),marriage:'overseas',x:{divorce:false,separated:false,name:false,prevKids:false,lang:true},
+  people:[{id:'p1',role:'main',name:'Wei Ling',sex:'f',age:34,bornSG:false,work:'employed',overseas:false,singpass:true},
+          {id:'p2',role:'spouse',name:'Arjun',sex:'m',age:36,bornSG:false,work:'employed',overseas:true,singpass:false},
+          {id:'p3',role:'child',name:'Mei',sex:'f',age:6,bornSG:true,work:'none',overseas:false,singpass:false}],checked:{},files:{},cur:'p1',example:true}}
+let S=null;
+try{S=JSON.parse(localStorage.getItem(KEY))||JSON.parse(localStorage.getItem(OLDKEY))}catch(e){S=null}
+if(!S||!Array.isArray(S.people))S=blank();
+S.files=S.files||{};S.checked=S.checked||{};S.x=Object.assign({divorce:false,separated:false,name:false,prevKids:false,lang:false},S.x||{});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+let photoOpen=false;
 
 function syncSponsor(){
-  const sch=SCHEMES[S.scheme];
-  const has=S.people.find(p=>p.role==='sponsor');
-  if(sch.sponsor&&!has)S.people.push({id:uid(),role:'sponsor',name:'',sex:'m',age:40,bornSG:true,work:'employed',overseas:false});
-  if(!sch.sponsor&&has)S.people=S.people.filter(p=>p.role!=='sponsor');
+  const need=!!SCHEMES[S.scheme].sponsor,has=S.people.find(p=>p.role==='sponsor');
+  if(need&&!has)S.people.push({id:uid(),role:'sponsor',name:'',sex:'m',age:40,bornSG:true,work:'employed',overseas:false,singpass:false});
+  if(!need&&has)S.people=S.people.filter(p=>p.role!=='sponsor');
 }
-const isApplicant=p=>['main','spouse','child'].includes(p.role);
-const pname=p=>(p.name&&p.name.trim())||ROLE_LABEL[p.role];
-function roleText(p){return p.role==='main'?SCHEMES[S.scheme].main:p.role==='sponsor'?SCHEMES[S.scheme].sponsor:ROLE_LABEL[p.role]}
 
-/* Document rules, from ICA's Document Checklist for Permanent Residence */
+/* ---------- document rules (ICA Document Checklist for Permanent Residence) ---------- */
+const GROUP={photo:'Identity',pp:'Identity',bc:'Identity',adopt:'Identity',dp:'Identity',
+  mc:'Family',sep:'Family',div:'Family',cust:'Family',consent:'Family',nc_bc:'Family',
+  edu:'Education and work',skill:'Education and work',mem:'Education and work',exam:'Education and work',loe:'Education and work',pay:'Education and work',tax:'Education and work',acra:'Education and work',bs:'Education and work',pl:'Education and work',nc_pay:'Education and work',nc_tax:'Education and work'};
 function docsFor(p){
   const out=[],app=isApplicant(p),spo=p.role==='sponsor',non=p.role==='nonspouse';
-  const married=S.marriage!=='none'&&p.age>=18;
-  const adult=p.age>=17;
-  const add=(id,t,n,o={})=>out.push({key:p.id+':'+id,t,n,...o});
-  if(app)add('photo','Passport-sized digital photo','Colour, recent, 400 × 514 px, white background. Use the Photo check tab.');
-  if(app||non)add('pp','Passport / travel document','Bio-data page. Not needed for documents issued by ICA.');
-  if((app||non)&&!p.bornSG)add('bc','Birth certificate / household register','Only because the birth was not registered in Singapore.',{tr:true});
-  if(app&&p.role==='child')add('adopt','Adoption papers (if adopted)','Only for minor and parent applicants who were legally adopted.',{optional:true});
-  if(married&&S.marriage==='overseas'&&(app||non))add('mc','Marriage certificate','Only because the marriage was registered outside Singapore.',{tr:true});
+  const married=S.marriage!=='none'&&p.age>=18,adult=p.age>=17;
+  const add=(id,t,n,o={})=>out.push({key:p.id+':'+id,id,g:GROUP[id],t,n,...o});
+  if(app)add('photo','Passport photo','Recent colour photo, 400 × 514 px, white background.',{photo:true});
+  if(app||non)add('pp','Passport bio-data page','Not needed for documents issued by ICA.');
+  if((app||non)&&!p.bornSG)add('bc','Birth certificate','Birth registered outside Singapore.',{tr:true});
+  if(app&&p.role==='child')add('adopt','Adoption papers','Only if legally adopted.',{optional:true});
+  if(S.x.name&&adult&&(app||non))add('dp','Deed poll or religious certificate','Only for a person whose name changed.',{tr:true,optional:true});
+  if(married&&S.marriage==='overseas'&&(app||non))add('mc','Marriage certificate','Marriage registered outside Singapore.',{tr:true});
   if(S.x.separated&&married&&(app||non))add('sep','Separation deed','',{tr:true});
-  if(S.x.name&&adult&&(app||non))add('dp','Deed poll or religious certificate for change of name','Only for the person whose name changed.',{tr:true,optional:true});
-  if(S.x.divorce&&adult)add('div','Divorce certificate, incl. Certificate of Making Interim Judgment Final','Only for the person previously divorced.',{tr:true,optional:true});
-  if(S.x.prevKids&&adult&&(app||non))add('cust','Custody papers for children from a previous marriage','',{tr:true});
-  if(S.x.prevKids&&app&&p.role==='child'&&p.age<21)add('consent','Letter of consent from ex-spouse','For minor applicants under joint custody.');
-  if(adult&&p.work!=='none'){
+  if(S.x.divorce&&adult)add('div','Divorce certificate','Including the Certificate of Making Interim Judgment Final. Only for the person previously divorced.',{tr:true,optional:true});
+  if(S.x.prevKids&&adult&&(app||non))add('cust','Custody papers','For children from a previous marriage.',{tr:true});
+  if(S.x.prevKids&&app&&p.role==='child'&&p.age<21)add('consent','Letter of consent from ex-spouse','For a child under joint custody.');
+  if(adult&&!(spo&&p.work==='none')){
     add('edu','Educational certificates and transcripts','Highest qualifications first.',{tr:true});
-    add('skill','Skill certificates / professional licences','If any.',{optional:true});
-    if(!spo)add('mem','Membership certificates','Professional bodies, if any.',{optional:true});
-  } else if(adult && p.work==='none' && !spo){
-    add('edu','Educational certificates and transcripts','',{tr:true});
+    if(p.work!=='none'){add('skill','Skill certificates or professional licences','If any.',{optional:true});if(!spo)add('mem','Membership certificates','Professional bodies, if any.',{optional:true})}
   }
-  if(p.role==='child'&&p.age>=12&&S.scheme!=='student'){}
-  if(S.scheme==='student'&&p.role==='main')add('exam','National exam results (PSLE / N / O / A Level) or IP enrolment proof','Evidence for the student scheme.');
+  if(S.scheme==='student'&&p.role==='main')add('exam','National exam results or IP enrolment','Evidence for the student scheme.');
   if(p.work==='employed'){
-    add('loe','Letter of employment from current employer','Must state occupation, start date, basic and gross monthly salary.',{dated:true});
+    add('loe','Letter of employment','Must state occupation, start date, and basic and gross monthly salary.',{dated:true});
     add('pay','Pay slips, last 6 months','',{pay:true});
-    if(p.overseas)add('tax','Income tax assessments / receipts, latest 3 years','Only because this person works overseas.',{tr:true});
+    if(p.overseas)add('tax','Income tax assessments, latest 3 years','Because this person works overseas.',{tr:true});
   }
   if(p.work==='self'){
-    add('acra','Latest ACRA Business Registration Certificate','');
+    add('acra','ACRA Business Registration Certificate','Latest copy.');
     add('bs','Balance sheets, latest 3 years','');
     add('pl','Profit and loss statements, latest 3 years','');
   }
   if(S.scheme==='parent'&&spo){
-    add('nc_bc','Non-applying children: birth certificates','Only for births not registered in Singapore.',{tr:true,optional:true});
-    add('nc_pay','Non-applying children: latest 1 month pay slip','');
-    add('nc_tax','Non-applying children: latest tax assessment','Only if working overseas.',{optional:true});
+    add('nc_bc',"Siblings' birth certificates",'Your non-applying children, if births were not registered in Singapore.',{tr:true,optional:true});
+    add('nc_pay',"Siblings' latest pay slip",'Latest 1 month, for your non-applying children.');
+    add('nc_tax',"Siblings' latest tax assessment",'Only if they work overseas.',{optional:true});
   }
   return out;
 }
+const ORDER=['main','spouse','child','nonspouse','sponsor'];
+const sorted=()=>[...S.people].sort((a,b)=>ORDER.indexOf(a.role)-ORDER.indexOf(b.role));
+const isDone=x=>!!(S.checked[x.key]||S.files[x.key]);
+function tally(p){const d=docsFor(p).filter(x=>!x.optional);return [d.filter(isDone).length,d.length]}
+function totals(){let a=0,b=0;S.people.forEach(p=>{const t=tally(p);a+=t[0];b+=t[1]});return [a,b]}
+const letterFrom=()=>addMonths(target(),-3);
+function payMonths(){const t=target(),m=[];for(let i=6;i>=1;i--)m.push(addMonths(new Date(t.getFullYear(),t.getMonth(),1),-i).toLocaleDateString('en-SG',{month:'short'}));return m.join(' · ')+' '+addMonths(t,-1).getFullYear()}
+function nsPeople(){return S.people.filter(p=>isApplicant(p)&&p.sex==='m'&&(p.role==='child'||S.scheme==='student'||S.scheme==='child'))}
+function singpassMissing(){return S.people.filter(p=>(isApplicant(p)||p.role==='sponsor')&&p.age>=15&&!p.singpass)}
+function fees(){const apps=S.people.filter(isApplicant);const ic=apps.filter(p=>p.age>=15).length;return {now:apps.length*100,later:apps.length*20+apps.length*50+ic*50,n:apps.length,ic}}
 
-/* ---------- render setup ---------- */
-const $=id=>document.getElementById(id);
-function renderSetup(){
-  $('scheme').value=S.scheme;$('schemeHint').textContent=SCHEMES[S.scheme].hint;
-  $('target').value=S.target;$('marriage').value=S.marriage;
-  $('xDivorce').checked=S.x.divorce;$('xSeparated').checked=S.x.separated;$('xName').checked=S.x.name;$('xPrevKids').checked=S.x.prevKids;$('xLang').checked=S.x.lang;
-  $('exTag').hidden=!S.example;
-  const box=$('people');box.innerHTML='';
-  S.people.forEach(p=>{
-    const d=document.createElement('div');d.className='person';
-    const chip=isApplicant(p)?'chip':p.role==='sponsor'?'chip sp':'chip na';
-    d.innerHTML=`<div class="ph"><span class="${chip}">${roleText(p)}</span>${(p.role==='spouse'||p.role==='child'||p.role==='nonspouse')?`<button class="x" data-del="${p.id}" aria-label="Remove ${pname(p)}">Remove</button>`:''}</div>
-    <div class="pgrid">
-      <div class="field full"><label for="n-${p.id}">Name</label><input type="text" id="n-${p.id}" data-f="name" data-id="${p.id}" value="${(p.name||'').replace(/"/g,'&quot;')}" placeholder="${ROLE_LABEL[p.role]}"></div>
-      <div class="field"><label for="a-${p.id}">Age</label><input type="number" min="0" max="110" id="a-${p.id}" data-f="age" data-id="${p.id}" value="${p.age}"></div>
-      <div class="field"><label for="s-${p.id}">Sex</label><select id="s-${p.id}" data-f="sex" data-id="${p.id}"><option value="f">Female</option><option value="m">Male</option></select></div>
-      <div class="field full"><label for="w-${p.id}">Work</label><select id="w-${p.id}" data-f="work" data-id="${p.id}"><option value="employed">Employed</option><option value="self">Self-employed</option><option value="none">Not working / studying</option></select></div>
-      <label class="tog full"><input type="checkbox" id="b-${p.id}" data-f="bornSG" data-id="${p.id}"> Birth registered in Singapore</label>
-      ${p.age>=15?`<label class="tog full"><input type="checkbox" id="sp-${p.id}" data-f="singpass" data-id="${p.id}"> Has an active Singpass with SMS 2FA</label>`:''}
-      ${p.work==='employed'?`<label class="tog full"><input type="checkbox" id="o-${p.id}" data-f="overseas" data-id="${p.id}"> Currently works overseas</label>`:''}
-    </div>`;
-    box.appendChild(d);
-    d.querySelector(`#s-${p.id}`).value=p.sex;d.querySelector(`#w-${p.id}`).value=p.work;
-    d.querySelector(`#b-${p.id}`).checked=!!p.bornSG;
-    const sp=d.querySelector(`#sp-${p.id}`);if(sp)sp.checked=!!p.singpass;
-    const o=d.querySelector(`#o-${p.id}`);if(o)o.checked=!!p.overseas;
-  });
+/* ---------- local file storage (IndexedDB, this browser only) ---------- */
+let dbp=null;
+function db(){if(dbp)return dbp;dbp=new Promise((res,rej)=>{try{const r=indexedDB.open('prready-files',1);r.onupgradeneeded=()=>r.result.createObjectStore('files');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}});dbp.catch(()=>{dbp=null});return dbp}
+async function idb(mode,fn){const d=await db();return new Promise((res,rej)=>{const tx=d.transaction('files',mode);fn(tx.objectStore('files'));tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);tx.onabort=()=>rej(tx.error)})}
+async function idbGet(k){const d=await db();return new Promise((res,rej)=>{const r=d.transaction('files').objectStore('files').get(k);r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+function say(t){const m=$('msg');if(m)m.textContent=t}
+async function storeFile(k,file){
+  if(!file)return;
+  try{await idb('readwrite',st=>st.put(file,k));S.files[k]={name:file.name,size:file.size,type:file.type,at:Date.now()};render();say('Saved '+file.name+' in this browser.')}
+  catch(e){render();say("This browser blocked local storage, so the file wasn't kept. Use a normal (not private) window.")}
+}
+async function removeFile(k){try{await idb('readwrite',st=>st.delete(k))}catch(e){}delete S.files[k];render()}
+function saveBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+const kb=n=>n>=1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB';
+
+/* ---------- header ---------- */
+function renderTop(v){
+  const logo=`<a class="logo" href="#start">${ICON.logo}<span>PR Ready</span></a>`;
+  if(v==='start'){$('top').innerHTML=logo+`<nav class="topnav" aria-label="Main"><a href="#how">How it works</a><a href="#privacy">Your privacy</a><a class="btn primary" href="#household">Start preparing</a></nav>`;return}
+  const ci=STEPS.findIndex(s=>s[0]===v);
+  const steps=STEPS.map((s,i)=>{const cls=i<ci?'done':i===ci?'cur':'';const mark=i<ci?ICON.done.replace('width="22" height="22"','width="14" height="14"'):`<span class="n">${i+1}</span>`;
+    return (i?'<span class="bar" aria-hidden="true"></span>':'')+(i===ci?`<span class="step cur" aria-current="step">${mark}${s[1]}</span>`:`<a class="step ${cls}" href="#${s[0]}">${mark}${s[1]}</a>`)}).join('');
+  $('top').innerHTML=logo+`<nav class="steps" aria-label="Progress">${steps}</nav><span class="local">${ICON.lock}Saved on this device</span>`;
 }
 
-/* ---------- render output ---------- */
-function renderOut(){
-  const target=new Date(S.target||Date.now());
-  const letterFrom=addMonths(target,-3);
-  const payMonths=[];for(let i=6;i>=1;i--){const m=addMonths(new Date(target.getFullYear(),target.getMonth(),1),-i);payMonths.push(m.toLocaleDateString('en-SG',{month:'short',year:'2-digit'}))}
-  // checklist
-  const cl=$('checklist');cl.innerHTML='';
-  let total=0,done=0,trCount=0;
-  const order=['main','spouse','child','nonspouse','sponsor'];
-  [...S.people].sort((a,b)=>order.indexOf(a.role)-order.indexOf(b.role)).forEach(p=>{
-    const docs=docsFor(p);if(!docs.length)return;
-    const blk=document.createElement('div');blk.className='who-block';
-    const pd=docs.filter(x=>S.checked[x.key]).length;
-    total+=docs.length;done+=pd;
-    blk.innerHTML=`<div class="who-head"><h3>${pname(p)} <span class="${isApplicant(p)?'chip':p.role==='sponsor'?'chip sp':'chip na'}">${roleText(p)}</span></h3><span class="hint mono">${pd}/${docs.length}</span></div>`;
-    docs.forEach(x=>{
-      const tr=x.tr&&S.x.lang;if(tr)trCount++;
-      let n=x.n;
-      if(x.dated)n+=` Dated on or after <span class="mono">${fmt(letterFrom)}</span>.`;
-      if(x.pay)n+=` Months: <span class="mono">${payMonths.join(' · ')}</span>.`;
-      const row=document.createElement('div');row.className='doc'+(S.checked[x.key]?' done':'');
-      row.innerHTML=`<input type="checkbox" id="c-${x.key}" data-doc="${x.key}" ${S.checked[x.key]?'checked':''}><label for="c-${x.key}"><span class="dt">${x.t}</span>${x.dated?'<span class="flag d">Date-sensitive</span>':''}${tr?'<span class="flag t">Translate if not English</span>':''}${x.optional?'<span class="flag" style="background:var(--line);color:var(--muted)">If applicable</span>':''}<br><span class="dn">${n}</span></label>${attHtml(x.key)}`;
-      blk.appendChild(row);
-    });
-    cl.appendChild(blk);
-  });
-  if(S.x.lang){const n=document.createElement('div');n.className='note';n.innerHTML='<b>Translations.</b> ICA accepts translations from the issuing country\'s embassy, from a notary public (in Singapore or the issuing country), or private translations attested by that embassy or notarised. Upload the original together with its translation.';cl.prepend(n)}
-  const note=document.createElement('div');note.className='note info';note.textContent='ICA may ask for further documents during assessment. Respond quickly; a stalled request is the most common reason a case runs past six months.';cl.appendChild(note);
-
-  // summary
-  const pct=total?Math.round(done/total*100):0;
-  $('sReady').textContent=pct+'%';$('sMeter').style.width=pct+'%';
-  $('sDocs').textContent=total;$('sDocsH').textContent=done+' collected · '+Object.keys(S.files).length+' files stored'+(S.x.lang&&trCount?` · ${trCount} may need translation`:'');
-  const apps=S.people.filter(isApplicant);
-  $('sFee').textContent='S$'+(apps.length*100);
-  $('sOut').textContent=addMonths(target,6).toLocaleDateString('en-SG',{month:'short',year:'numeric'});
-
-  // plan
-  const sch=SCHEMES[S.scheme];const spon=S.people.find(p=>p.role==='sponsor');
-  const kids=apps.filter(p=>p.age<15);const males=apps.filter(p=>p.sex==='m');
-  const pl=$('plan');
-  const steps=[
-    [fmt(addMonths(target,-2)),'Collect & translate',`Request birth, marriage and other civil documents now. Translations through an embassy or notary can take weeks.`],
-    [fmt(addMonths(target,-1)),'Singpass for everyone 15+',`${apps.filter(p=>p.age>=15).map(pname).join(', ')||'Each applicant'}${spon?', and '+pname(spon):''} each need their own Singpass. New registration can take a few working days.`],
-    [fmt(letterFrom)+' →','Employment letters',`Ask employers for letters dated no earlier than ${fmt(letterFrom)}, stating occupation, start date, basic and gross salary.`],
-    [fmt(target),spon?`${pname(spon)} fills in the form`:`${pname(apps[0]||{role:'main'})} fills in the form`,spon?`The sponsor logs in, completes the form and uploads documents. Before submission, each applicant must log in to review and make their declarations.`:`Log in, complete the form, upload documents, declare and submit.`],
-    [fmt(target),'Pay S$'+apps.length*100,'S$100 per applicant, non-refundable, paid on submission.'],
-    [fmt(addMonths(target,6)),'Outcome by email','Generally within 6 months if documents are complete. Track status in the e-Service or MyICA.'],
-    ['After IPA','Complete formalities','On approval you receive an In-Principle Approval letter, then complete formalities and pay the remaining fees to receive your IC.']
-  ];
-  pl.innerHTML=`<div class="steps">${steps.map(s=>`<div class="step"><span class="when">${s[0]}</span><span><b>${s[1]}</b><br><span class="dn">${s[2]}</span></span></div>`).join('')}</div>`
-   +(kids.length?`<div class="note info"><b>Under 15:</b> ${kids.map(pname).join(', ')} use the non-Singpass option, so no Singpass is needed for them.</div>`:'')
-   +(males.length?`<div class="note"><b>National Service:</b> ${males.map(pname).join(', ')} ${males.length>1?'are':'is'} male. Male PRs granted status as a student or under a parent's sponsorship are liable for NS. Read the CMPB guidance (cmpb.gov.sg) before applying.</div>`:'')
-   +`<div class="note"><b>Keep every pass valid until the outcome.</b> If an applicant's pass is cancelled while ICA is processing (for example after a job change), their Singpass stops working and ICA treats the application as rejected.</div>`
-   +`<div class="note info"><b>Your Singpass is yours alone.</b> Each person logs in themselves, even when someone is helping. Giving your Singpass login to another person can be an offence.</div>`
-   +`<div class="note info"><b>During processing:</b> if your address, marital status or qualifications change, update them in the application's case summary page rather than starting again.</div>`;
-
-  // fees
-  const ic=apps.filter(p=>p.age>=15).length;
-  const rows=[['Application fee','At submission',apps.length,100],['Entry Permit','At formalities',apps.length,20],['5-year Re-Entry Permit','At formalities',apps.length,50],['Singapore Identity Card (aged 15+)','At formalities',ic,50]];
-  const tot=rows.reduce((a,r)=>a+r[2]*r[3],0);
-  renderPack();
-  $('fees').innerHTML=`<div class="tbl"><table><thead><tr><th>Fee</th><th>When</th><th class="n">People</th><th class="n">Each</th><th class="n">Total</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="n">${r[2]}</td><td class="n">S$${r[3]}</td><td class="n">S$${r[2]*r[3]}</td></tr>`).join('')}<tr><th colspan="4">If approved</th><th class="n">S$${tot}</th></tr></tbody></table></div><p class="hint">All ICA fees are non-refundable. Translation and notarisation costs are extra and vary by provider. Estimate only; ICA notifies successful applicants of the fees that apply.</p>`;
+/* ---------- start ---------- */
+function viewStart(){
+  return `<section class="wrap hero">
+    <div class="copy">
+      <span class="eyebrow">Singapore PR · e-PR preparation</span>
+      <h1>Get your PR application ready before you open the e-Service.</h1>
+      <p>Tell us who is applying. We show each person exactly which documents to gather, which dates they must fall within, and what to bring on submission day.</p>
+      <div class="row"><a class="btn primary" href="#household" style="min-height:52px;font-size:17px;padding:0 24px">${S.example||S.people.some(p=>p.name)?'Continue preparing':'Start preparing'}</a><a class="btn" href="#how" style="min-height:52px">See how it works</a></div>
+      <span class="hint">Free · No sign-up · Your answers and files stay on your device</span>
+    </div>
+    <div class="preview" aria-label="Example of a person's checklist">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:var(--f-display);font-weight:600;font-size:18px">Example: Wei Ling</span><span class="mono hint">6 of 9 ready</span></div>
+      <div class="meter"><i style="width:67%"></i></div>
+      <div class="list" style="border:none">
+        <div class="doc" style="padding:10px 0;grid-template-columns:24px minmax(0,1fr) auto">${ICON.done}<span>Passport photo</span><span class="hint">Checked</span></div>
+        <div class="doc" style="padding:10px 0;grid-template-columns:24px minmax(0,1fr) auto">${ICON.done}<span>Passport bio-data page</span><span class="hint">Attached</span></div>
+        <div class="doc" style="padding:10px 0;grid-template-columns:24px minmax(0,1fr) auto">${ICON.warn}<span>Letter of employment</span><span class="warn" style="font-size:14px">Dated after 10 Sep</span></div>
+        <div class="doc" style="padding:10px 0;grid-template-columns:24px minmax(0,1fr) auto">${ICON.todo}<span>Birth certificate</span><span class="hint">Needs translation</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="band" id="how"><div class="wrap">
+    <h2 class="h2">Three steps, at your own pace</h2>
+    <div class="three">
+      <div><span class="mono" style="color:var(--accent)">01</span><h3>Describe your household</h3><p>How you are applying, who is applying with you, and when you plan to submit. About two minutes.</p></div>
+      <div><span class="mono" style="color:var(--accent)">02</span><h3>Gather each person's documents</h3><p>A checklist for each person, with translation flags, date windows and a passport photo check.</p></div>
+      <div><span class="mono" style="color:var(--accent)">03</span><h3>Download your submission pack</h3><p>Files renamed in order, plus a summary sheet. Then you submit on ICA's e-Service with your own Singpass.</p></div>
+    </div>
+  </div></section>
+  <section class="wrap privacy" id="privacy">
+    <div style="display:flex;flex-direction:column;gap:12px"><h2 class="h2" style="font-size:30px">Your documents never leave your device</h2><p>PR Ready has no server. Everything you type and attach is kept in this browser only. Save your progress to a file if you want to continue on another computer.</p></div>
+    <ul class="dots">
+      <li><span><b>You submit it yourself</b>, with your own Singpass. Never share your login with anyone.</span></li>
+      <li><span><b>No one can improve your chances.</b> ICA assesses every application on its merits and endorses no consultants.</span></li>
+      <li><span><b>Pay only on ICA's e-Service.</b> S$100 per applicant, paid when you submit.</span></li>
+    </ul>
+  </section>`;
 }
 
-function render(){syncSponsor();renderSetup();renderOut();save()}
+/* ---------- step 1: household ---------- */
+function viewHousehold(){
+  const routes=Object.entries(SCHEMES).map(([k,s])=>`<label class="route"><input type="radio" name="route" value="${k}" data-route ${S.scheme===k?'checked':''}><span><b>${s.label}</b><small>${s.hint}</small></span></label>`).join('');
+  const people=sorted().map(p=>{
+    const sp=p.age>=15&&(isApplicant(p)||p.role==='sponsor')
+      ?(p.singpass?`<label class="sp ok"><input type="checkbox" id="sp-${p.id}" data-f="singpass" data-id="${p.id}" checked>Singpass ready</label>`:`<label class="sp need"><input type="checkbox" id="sp-${p.id}" data-f="singpass" data-id="${p.id}">Has active Singpass with 2FA</label>`)
+      :`<span class="sp" style="color:var(--muted)">${p.age<15?'Under 15, no Singpass needed':'No login needed'}</span>`;
+    const canRemove=['spouse','child','nonspouse'].includes(p.role);
+    return `<div class="person"><div class="prow">
+      <label class="sr" for="n-${p.id}">Name of ${esc(roleText(p))}</label><input class="field" id="n-${p.id}" data-f="name" data-id="${p.id}" value="${esc(p.name)}" placeholder="${esc(roleText(p))}'s name" autocomplete="off">
+      <span><label class="sr" for="a-${p.id}">Age</label><input class="field mono" type="number" min="0" max="110" id="a-${p.id}" data-f="age" data-id="${p.id}" value="${p.age}" aria-label="Age"></span>
+      <span class="role">${esc(roleText(p))}</span>${sp}</div>
+      <details ${p._open?'open':''} data-open="${p.id}"><summary>More details</summary><div class="more">
+        <label class="f">Sex<select class="field" id="s-${p.id}" data-f="sex" data-id="${p.id}"><option value="f" ${p.sex==='f'?'selected':''}>Female</option><option value="m" ${p.sex==='m'?'selected':''}>Male</option></select></label>
+        <label class="f">Work<select class="field" id="w-${p.id}" data-f="work" data-id="${p.id}"><option value="employed" ${p.work==='employed'?'selected':''}>Employed</option><option value="self" ${p.work==='self'?'selected':''}>Self-employed</option><option value="none" ${p.work==='none'?'selected':''}>Not working or studying</option></select></label>
+        <label class="tog"><input type="checkbox" id="b-${p.id}" data-f="bornSG" data-id="${p.id}" ${p.bornSG?'checked':''}>Birth registered in Singapore</label>
+        ${p.work==='employed'?`<label class="tog"><input type="checkbox" id="o-${p.id}" data-f="overseas" data-id="${p.id}" ${p.overseas?'checked':''}>Currently works overseas</label>`:''}
+        ${canRemove?`<button class="linkbtn danger" data-del="${p.id}">Remove ${esc(pname(p))}</button>`:''}
+      </div></details></div>`}).join('');
+  const chip=(k,label,on)=>`<button class="chip" data-chip="${k}" aria-pressed="${on}">${label}</button>`;
+  const chips=chip('m-overseas','Married overseas',S.marriage==='overseas')+chip('m-sg','Married in Singapore',S.marriage==='sg')+
+    chip('lang','Documents not in English',S.x.lang)+chip('divorce','Previous divorce',S.x.divorce)+chip('separated','Currently separated',S.x.separated)+
+    chip('name','Change of name',S.x.name)+chip('prevKids','Children from a previous marriage',S.x.prevKids);
+  return `<div class="wrap page">
+    <div class="pagehead"><div><h1>Tell us about your household</h1><p>Your answers decide who fills in the form and which documents each person needs.</p></div>
+      ${S.example?'<span class="tag" style="font-size:13px">Example household</span>':'<button class="linkbtn accent" data-act="example">Try with an example household</button>'}</div>
+    <div class="cols">
+      <div class="colmain">
+        <section class="card"><h2>How are you applying?</h2><div class="routes" role="radiogroup" aria-label="How are you applying?">${routes}</div></section>
+        <section class="card"><h2>Who is involved?</h2><div class="people">${people}</div>
+          <div class="row"><label class="sr" for="addRole">Add a person</label><select class="field" id="addRole" style="width:auto;min-height:44px"><option value="">Add a person…</option><option value="spouse">Spouse, applying</option><option value="child">Child, applying</option><option value="nonspouse">Spouse, not applying</option></select></div></section>
+        <section class="card"><h2>Anything else that applies?</h2><div class="chips">${chips}</div></section>
+        <section class="card datecard"><div style="display:flex;flex-direction:column;gap:4px;flex:1 1 240px"><label for="target" style="font-size:18px;font-weight:600">When do you plan to submit?</label><span class="hint">We use this to check your document dates.</span></div>
+          <input class="field" type="date" id="target" value="${esc(S.target)}"></section>
+      </div>
+      <aside class="colside"><section class="summary" id="summary" aria-live="polite">${summaryHTML()}</section>
+        ${nsPeople().length?`<p class="smallnote">${nsPeople().map(p=>esc(pname(p))).join(', ')}: male children and students granted PR are liable for National Service. Read CMPB's guidance before you apply.</p>`:''}
+      </aside>
+    </div></div>`;
+}
+function summaryHTML(){
+  const sch=SCHEMES[S.scheme],spon=S.people.find(p=>p.role==='sponsor'),apps=S.people.filter(isApplicant),f=fees(),t=totals();
+  const fills=spon?pname(spon):pname(apps[0]||S.people[0]);
+  const logins=[...new Set([fills,...apps.filter(p=>p.age>=15).map(pname)])].join(', ');
+  const miss=singpassMissing();
+  return `<h2>What this means</h2><div class="kv">
+    <div><span>Fills in the form</span><span>${esc(fills)}</span></div>
+    <div><span>Logs in to declare</span><span>${esc(logins)}</span></div>
+    <div><span>Documents to gather</span><span class="mono">${t[1]}</span></div>
+    <div><span>Paid at submission</span><span class="mono">S$${f.now}</span></div>
+    <div><span>If approved, paid later</span><span class="mono">S$${f.later}</span></div>
+    <div><span>Outcome expected</span><span class="mono">${fmtM(addMonths(target(),6))}</span></div></div>
+    ${miss.length?`<div class="pwarn">${esc(miss.map(pname).join(', '))} ${miss.length>1?'need':'needs'} an active Singpass before you submit.</div>`:''}
+    <a class="ctalight" href="#documents">Continue to documents</a>`;
+}
 
-/* ---------- events ---------- */
-document.addEventListener('change',e=>{
-  const t=e.target;
-  if(t.dataset.doc){S.checked[t.dataset.doc]=t.checked;renderOut();save();return}
-  if(t.dataset.up){storeFile(t.dataset.up,t.files[0]);return}
-  if(t.id==='bkFile'){restoreBackup(t);return}
-  if(t.id==='scheme'){S.scheme=t.value;S.example=false;render();return}
-  if(t.id==='target'){S.target=t.value;renderOut();save();return}
-  if(t.id==='marriage'){S.marriage=t.value;S.example=false;render();return}
-  const xm={xDivorce:'divorce',xSeparated:'separated',xName:'name',xPrevKids:'prevKids',xLang:'lang'};
-  if(xm[t.id]){S.x[xm[t.id]]=t.checked;S.example=false;render();return}
-  if(t.id==='addRole'&&t.value){const r=t.value;S.people.push({id:uid(),role:r,name:'',sex:r==='child'?'m':'f',age:r==='child'?8:32,bornSG:r==='child',work:r==='child'?'none':'employed',overseas:false});t.value='';S.example=false;render();return}
-  if(t.id==='photo'){checkPhoto(t.files[0]);return}
-  if(t.dataset.f){const p=S.people.find(x=>x.id===t.dataset.id);if(!p)return;const f=t.dataset.f;
-    p[f]=t.type==='checkbox'?t.checked:f==='age'?Math.max(0,parseInt(t.value||'0',10)):t.value;S.example=false;
-    if(f==='name'){renderOut();save()}else render();}
-});
-document.addEventListener('input',e=>{const t=e.target;if(t.dataset.f==='name'){const p=S.people.find(x=>x.id===t.dataset.id);if(p){p.name=t.value;renderOut();save()}}});
-document.addEventListener('click',e=>{
-  const t=e.target;
-  if(t.dataset.del){S.people=S.people.filter(p=>p.id!==t.dataset.del);S.example=false;render()}
-  if(t.dataset.rm){removeFile(t.dataset.rm);return}
-  if(t.id==='bkCopy'){copyBackup();return}
-  if(t.id==='packZip'){buildZip(t);return}
-  if(t.id==='wipe'){wipeAll(t);return}
-  if(t.id==='resetEx'){const f=S.files;S=example();S.files=f;render()}
-  if(t.id==='clearAll'){const f=S.files;S=blank();S.files=f;render()}
-  if(t.dataset.tab){document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',b===t));['check','plan','fees','photo','pack'].forEach(k=>$('pane-'+k).hidden=k!==t.dataset.tab)}
-});
-
-/* ---------- photo checker ---------- */
+/* ---------- step 2: documents ---------- */
+function viewDocuments(){
+  const ppl=sorted().filter(p=>docsFor(p).length);
+  if(!ppl.find(p=>p.id===S.cur))S.cur=(ppl[0]||{}).id;
+  const p=ppl.find(x=>x.id===S.cur);const t=totals();
+  const nav=ppl.map(x=>{const c=tally(x);return `<button class="pbtn" data-person="${x.id}" aria-current="${x.id===S.cur}"><span><b>${esc(pname(x))}</b>${x.name&&x.name.trim()?`<small>${esc(roleText(x))}</small>`:''}</span><span class="mono">${c[0]}/${c[1]}</span></button>`}).join('')+
+    `<button class="pbtn photobtn" data-act="photo" aria-expanded="${photoOpen}">${ICON.cam}Check a passport photo</button>`;
+  let main='';
+  if(photoOpen)main+=`<section class="card photo" id="photoCard"><h2>Passport photo check</h2><p class="hint" style="margin:0">ICA asks for a recent colour photo, 400 × 514 pixels, full face, white background. Your photo is checked in this browser and not uploaded.</p>
+    <label class="btn sm" style="align-self:flex-start">Choose a photo<input type="file" id="photoIn" accept="image/jpeg,image/png"></label><div class="row" style="align-items:flex-start"><canvas id="pc" hidden></canvas><div class="res" id="photoRes"></div></div></section>`;
+  if(p){
+    const docs=docsFor(p);
+    if(p.work==='employed')main+=`<div class="banner">${esc(pname(p))}'s employment letter must be dated on or after <b>${fmt(letterFrom())}</b> for a ${fmt(target())} submission.</div>`;
+    if(S.x.lang&&docs.some(x=>x.tr))main+=`<div class="banner info"><b>Translations:</b> ICA accepts translations from the issuing country's embassy, from a notary public, or private translations attested by that embassy or notarised. Upload the original with its translation.</div>`;
+    ['Identity','Family','Education and work'].forEach(g=>{const ds=docs.filter(x=>x.g===g);if(!ds.length)return;
+      main+=`<section class="group"><h2 class="label">${g}</h2><div class="list">${ds.map(docRow).join('')}</div></section>`});
+  }
+  main+=`<span id="msg" aria-live="polite"></span><div class="footnav"><a href="#household">Back to household</a><a class="btn primary" href="#pack">Continue to submission pack</a></div>`;
+  return `<div class="wrap page">
+    <div class="pagehead"><div><h1>Gather your documents</h1><p>Tick each document when you have it. Attach the file to include it in your pack. Files stay in this browser.</p></div>
+      <div class="progress"><div class="t"><span>Household progress</span><span class="mono">${t[0]} / ${t[1]}</span></div><div class="meter"><i style="width:${t[1]?Math.round(t[0]/t[1]*100):0}%"></i></div></div></div>
+    <div class="cols"><nav class="pnav" aria-label="People">${nav}</nav><div class="dmain">${main}</div></div></div>`;
+}
+function docRow(x){
+  const f=S.files[x.key],done=isDone(x);
+  const state=done?'done':x.dated?'warn':'todo';
+  let tags='';
+  if(x.tr&&S.x.lang)tags+='<span class="tag">Translation if not English</span>';
+  if(x.dated&&!done)tags+=`<span class="tag">Dated after ${fmt(letterFrom())}</span>`;
+  if(x.optional)tags+='<span class="tag plain">If applicable</span>';
+  let note=x.n;
+  if(x.pay)note=`<span class="mono" style="font-size:13px">${payMonths()}</span>`;
+  if(f)note=`${esc(f.name)} · ${kb(f.size)}`;
+  const act=f?`<button class="linkbtn" data-rm="${esc(x.key)}">Remove file</button>`:`<label class="btn sm">Attach<input type="file" data-up="${esc(x.key)}" accept="application/pdf,image/jpeg,image/png" aria-label="Attach ${esc(x.t)}"></label>`;
+  return `<div class="doc"><label class="tick"><input type="checkbox" id="c-${x.key}" data-doc="${x.key}" ${done?'checked':''} ${f?'disabled':''}><span class="sr">${esc(x.t)} collected</span>${ICON[state]}</label>
+    <div><div class="dt">${esc(x.t)}${tags}</div><div class="dn">${note}</div></div><div class="dact">${act}</div></div>`;
+}
 function checkPhoto(file){
-  const res=$('photoRes');const c=$('pc');
-  if(!file){res.innerHTML='';c.hidden=true;return}
-  const img=new Image();const url=URL.createObjectURL(file);
+  const res=$('photoRes'),c=$('pc');if(!file||!res)return;
+  const img=new Image(),url=URL.createObjectURL(file);
   img.onload=()=>{
-    const w=img.naturalWidth,h=img.naturalHeight;
-    c.width=w;c.height=h;const ctx=c.getContext('2d');ctx.drawImage(img,0,0);c.hidden=false;
-    // sample a 6% border strip on top, left and right (skip bottom: shoulders)
-    const bw=Math.max(2,Math.round(w*.06)),bh=Math.max(2,Math.round(h*.06));
-    let n=0,lum=0,sat=0;
-    const sample=(x,y,ww,hh)=>{const d=ctx.getImageData(x,y,ww,hh).data;for(let i=0;i<d.length;i+=16){const r=d[i],g=d[i+1],b=d[i+2];const mx=Math.max(r,g,b),mn=Math.min(r,g,b);lum+=(r+g+b)/3;sat+=mx-mn;n++}};
-    sample(0,0,w,bh);sample(0,0,bw,Math.round(h*.6));sample(w-bw,0,bw,Math.round(h*.6));
-    lum/=n;sat/=n;
-    const dimOk=w===400&&h===514;const ratioOk=Math.abs(w/h-400/514)<0.01;
-    const kb=Math.round(file.size/1024);
-    const bgOk=lum>=235&&sat<18,bgMid=lum>=215&&sat<30;
-    res.innerHTML=`
-      <div>${dimOk?'<span class="ok">✓ 400 × 514 px</span>':ratioOk?`<span class="mid">Right shape, wrong size: ${w} × ${h} px. Resize to 400 × 514.</span>`:`<span class="bad">✗ ${w} × ${h} px. ICA needs 400 × 514 px.</span>`}</div>
-      <div>${bgOk?'<span class="ok">✓ Background looks white</span>':bgMid?'<span class="mid">Background is off-white or shadowed. Retake against a white wall with even light.</span>':'<span class="bad">✗ Background does not look white</span>'}</div>
-      <div class="hint mono">${file.type.replace('image/','').toUpperCase()} · ${kb} KB · edge brightness ${Math.round(lum)}/255</div>
-      <div class="hint">Also check yourself: taken recently, full face, eyes open, no headgear unless worn for religious or racial customs.</div>`;
+    const w=img.naturalWidth,h=img.naturalHeight;c.width=w;c.height=h;const ctx=c.getContext('2d');ctx.drawImage(img,0,0);c.hidden=false;
+    const bw=Math.max(2,Math.round(w*.06)),bh=Math.max(2,Math.round(h*.06));let n=0,lum=0,sat=0;
+    const sample=(x,y,ww,hh)=>{const d=ctx.getImageData(x,y,ww,hh).data;for(let i=0;i<d.length;i+=16){const r=d[i],g=d[i+1],b=d[i+2];lum+=(r+g+b)/3;sat+=Math.max(r,g,b)-Math.min(r,g,b);n++}};
+    sample(0,0,w,bh);sample(0,0,bw,Math.round(h*.6));sample(w-bw,0,bw,Math.round(h*.6));lum/=n;sat/=n;
+    const dimOk=w===400&&h===514,ratioOk=Math.abs(w/h-400/514)<0.01,bgOk=lum>=235&&sat<18,bgMid=lum>=215&&sat<30;
+    res.innerHTML=`<span class="${dimOk?'ok':ratioOk?'warn':'bad'}">${dimOk?'✓ 400 × 514 px':ratioOk?`Right shape, wrong size (${w} × ${h} px). Resize to 400 × 514.`:`✗ ${w} × ${h} px. ICA needs 400 × 514 px.`}</span>
+      <span class="${bgOk?'ok':bgMid?'warn':'bad'}">${bgOk?'✓ Background looks white':bgMid?'Background is off-white or shadowed. Retake against a white wall with even light.':'✗ Background does not look white'}</span>
+      <span class="hint">Also check: taken recently, full face, eyes open, no headgear unless worn for religious or racial customs.</span>`;
     URL.revokeObjectURL(url);
   };
   img.onerror=()=>{res.innerHTML='<span class="bad">That file could not be read as an image. Use a JPG or PNG.</span>'};
   img.src=url;
 }
 
-/* ---------- submission pack ---------- */
-const ORDER=['main','spouse','child','nonspouse','sponsor'];
-const sortedPeople=()=>[...S.people].sort((a,b)=>ORDER.indexOf(a.role)-ORDER.indexOf(b.role));
+/* ---------- step 3: submission pack ---------- */
 const slug=t=>String(t).replace(/\(.*?\)/g,'').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40)||'file';
 function packName(p,i,x,f){const ext=(f&&f.name.includes('.'))?f.name.slice(f.name.lastIndexOf('.')).toLowerCase():'';return String(i+1).padStart(2,'0')+'_'+slug(pname(p))+'_'+slug(x.t)+ext}
 function packChecks(){
   const c=[];
-  S.people.filter(p=>(isApplicant(p)||p.role==='sponsor')&&p.age>=15).forEach(p=>c.push([!!p.singpass,pname(p)+' has an active Singpass with SMS 2FA']));
-  let total=0,got=0;sortedPeople().forEach(p=>docsFor(p).filter(x=>!x.optional).forEach(x=>{total++;if(S.checked[x.key])got++}));
-  c.push([got===total,'All required documents collected ('+got+'/'+total+')']);
-  c.push([null,'Employment letters dated on or after '+fmt(addMonths(new Date(S.target||Date.now()),-3))]);
-  c.push([null,"Every applicant's pass stays valid until ICA gives the outcome"]);
+  S.people.filter(p=>(isApplicant(p)||p.role==='sponsor')&&p.age>=15).forEach(p=>c.push(p.singpass?['done',esc(pname(p))+' has an active Singpass with 2FA']:['warn',`<b>${esc(pname(p))} needs an active Singpass.</b> <a href="#household">Update in household</a>`]));
+  const t=totals();c.push(t[0]===t[1]?['done','All required documents collected']:['warn',`<b>${t[1]-t[0]} of ${t[1]} documents still missing.</b> <a href="#documents">Go to documents</a>`]);
+  if(S.people.some(p=>p.work==='employed'))c.push(['todo','Employment letters dated on or after '+fmt(letterFrom())]);
+  c.push(['todo',"Every applicant's pass stays valid until ICA gives the outcome"]);
   return c;
 }
-function renderPack(){
-  const el=$('pack');if(!el)return;
-  const ppl=sortedPeople();let att=0;
-  const checks=packChecks();
-  const blocks=ppl.map(p=>{const docs=docsFor(p);if(!docs.length)return'';
-    return `<div class="who-block"><div class="who-head"><h3>${esc(pname(p))} <span class="${isApplicant(p)?'chip':p.role==='sponsor'?'chip sp':'chip na'}">${roleText(p)}</span></h3></div>`+
-    docs.map((x,i)=>{const f=S.files[x.key];if(f)att++;const st=f?['ok','In pack']:S.checked[x.key]?['mid','Not attached']:x.optional?['hint','If applicable']:['bad','Missing'];
-      return `<div class="prow"><span><span class="dt">${x.t}</span><br><span class="dn mono">${f?esc(packName(p,i,x,f)):(S.checked[x.key]?'Collected, but no file attached':'No file yet')}</span></span><span class="${st[0]}">${st[1]}</span></div>`}).join('')+'</div>'}).join('');
-  el.innerHTML=`<p class="hint" style="margin:0">Bring this pack to your submission session. Files are renamed and numbered in the order of this checklist, so uploading is quick. You still log in and submit yourself.</p>
-   <ul class="chk">${checks.map(c=>`<li><span class="${c[0]===true?'ok':c[0]===false?'bad':'mid'}">${c[0]===true?'✓':c[0]===false?'✗':'•'}</span><span>${esc(c[1])}${c[0]===null?' <span class="hint">(check yourself)</span>':''}</span></li>`).join('')}</ul>
-   <div class="row" style="align-items:center"><button class="primary" id="packZip" ${att?'':'disabled'}>Download submission pack (.zip)</button><span class="hint">${att} file${att===1?'':'s'} in the pack, plus a summary sheet</span></div>
-   <span id="packMsg" class="hint" aria-live="polite"></span>
-   ${blocks}
-   <div class="note info"><b>Details to have ready for the form.</b> Passport number and expiry, FIN, residential address and contact details, education history (school, qualification, year), employment history (employer, job title, dates, salary), and particulars of family members. ICA's e-Service form decides exactly what is asked.</div>`;
+function viewPack(){
+  const ppl=sorted();let n=0;const tree=['<div>00_Summary.txt</div>'];
+  ppl.forEach((p,pi)=>{const docs=docsFor(p);const files=docs.map((x,i)=>[x,i]).filter(([x])=>S.files[x.key]);n+=files.length;if(!files.length)return;
+    tree.push(`<div>${pi+1}_${esc(slug(pname(p)))}/</div>`);files.slice(0,4).forEach(([x,i])=>tree.push(`<div class="in">${esc(packName(p,i,x,S.files[x.key]))}</div>`));if(files.length>4)tree.push(`<div class="in dim">+ ${files.length-4} more</div>`)});
+  const sch=SCHEMES[S.scheme],spon=S.people.find(p=>p.role==='sponsor'),fills=spon?pname(spon):pname(ppl[0]),f=fees(),t=target();
+  return `<div class="wrap page">
+    <div class="pagehead"><div><h1>Your submission pack</h1><p>Everything you need on submission day, in the order you will upload it.</p></div></div>
+    <div class="cols"><div class="colmain">
+      <section class="card"><h2>Before you submit</h2><ul class="checks">${packChecks().map(c=>`<li>${ICON[c[0]].replace(/width="22" height="22"/,'width="20" height="20"')}<span>${c[1]}</span></li>`).join('')}</ul></section>
+      <section class="card"><div class="row" style="justify-content:space-between;align-items:baseline"><h2>What's in the pack</h2><span class="hint">${n} file${n===1?'':'s'} · renamed in upload order</span></div>
+        ${n?`<div class="tree">${tree.join('')}</div>`:'<p class="hint" style="margin:0">No files attached yet. <a href="#documents">Attach files in the documents step</a> to include them.</p>'}</section>
+      <section class="card"><h2>On submission day</h2><ol class="day">
+        <li>Each applicant aged 15 or above logs in to ICA's e-Service with their own Singpass.</li>
+        <li>${esc(fills)} fills in the form and uploads the files from this pack.</li>
+        <li>Each applicant reviews the form and makes their own declarations.</li>
+        <li>Pay S$${f.now} (S$100 per applicant) on the e-Service and save your reference ID.</li>
+        <li>Keep every pass valid until the outcome, and answer any ICA request for documents quickly.</li></ol></section>
+      <section class="card"><h2>Key dates</h2><div class="dates">
+        <div><span class="mono">${fmt(addMonths(t,-2))}</span><span>Order any translations. Embassy and notary translations can take weeks.</span></div>
+        <div><span class="mono">${fmt(addMonths(t,-1))}</span><span>Everyone aged 15 or above has an active Singpass.</span></div>
+        <div><span class="mono">${fmt(letterFrom())}</span><span>Earliest date for employment letters.</span></div>
+        <div><span class="mono">${fmt(t)}</span><span>Submit on ICA's e-Service.</span></div>
+        <div><span class="mono">${fmtM(addMonths(t,6))}</span><span>Outcome by email, generally within 6 months. Then complete formalities and pay S$${f.later}.</span></div></div></section>
+    </div>
+    <aside class="colside">
+      <section class="summary"><h2>Download</h2><p>One .zip with every attached file and a summary sheet. Download it again any time.</p>
+        <button class="ctalight" id="packZip">Download submission pack</button><span id="msg" aria-live="polite" style="color:var(--panel-muted)"></span></section>
+      <section class="card"><h2 style="font-size:16px">Your progress</h2><p class="hint" style="margin:0">Saved in this browser. Save a copy to continue on another computer, or in case your browser data is cleared.</p>
+        <div class="row" style="gap:8px"><button class="btn sm" style="color:var(--ink)" data-act="saveprog">Save my progress</button><button class="btn sm" style="color:var(--ink)" data-act="openprog">Open saved progress</button></div>
+        <button class="linkbtn danger" style="align-self:flex-start;padding-left:0" data-act="wipe">Delete everything from this browser</button></section>
+    </aside></div></div>`;
 }
-async function idbGet(k){const d=await db();return new Promise((res,rej)=>{const r=d.transaction('files').objectStore('files').get(k);r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-function saveBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
 function packSummary(){
-  const L=[];const sch=SCHEMES[S.scheme];
-  L.push('PR READY SG · SUBMISSION PACK','Generated: '+fmt(new Date()),'Planned submission: '+fmt(new Date(S.target||Date.now())),'Applying as: '+sch.main,'');
-  L.push('PRE-SUBMISSION CHECKS');packChecks().forEach(c=>L.push((c[0]===true?'[x] ':c[0]===false?'[ ] ':'[?] ')+c[1]));L.push('');
-  sortedPeople().forEach((p,pi)=>{const docs=docsFor(p);if(!docs.length)return;L.push((pi+1)+'. '+pname(p)+' — '+roleText(p));
-    docs.forEach((x,i)=>{const f=S.files[x.key];L.push('   '+(f?'[file] '+packName(p,i,x,f):S.checked[x.key]?'[collected, no file] '+x.t:(x.optional?'[if applicable] ':'[MISSING] ')+x.t))});L.push('')});
-  L.push('ON SUBMISSION DAY',
-   '1. Each applicant aged 15+ logs in to ICA e-Service with their OWN Singpass. Never share Singpass logins.',
-   '2. '+(sch.sponsor?'The sponsor':'The main applicant')+' fills in the form and uploads the files from this pack.',
-   '3. Each applicant reviews the form and makes their own declarations.',
-   '4. Pay S$100 per applicant on ICA e-Service. Save the reference ID.',
-   '5. Keep every pass valid until the outcome. Answer any ICA request for more documents quickly.','',
-   'Not affiliated with ICA. Confirm requirements at www.ica.gov.sg.');
+  const L=[],sch=SCHEMES[S.scheme];
+  L.push('PR READY SG · SUBMISSION PACK','Generated: '+fmt(new Date()),'Planned submission: '+fmt(target()),'Applying as: '+sch.label,'');
+  L.push('BEFORE YOU SUBMIT');packChecks().forEach(c=>L.push((c[0]==='done'?'[x] ':c[0]==='warn'?'[ ] ':'[?] ')+c[1].replace(/<[^>]+>/g,'')));L.push('');
+  sorted().forEach((p,pi)=>{const docs=docsFor(p);if(!docs.length)return;L.push((pi+1)+'. '+pname(p)+' — '+roleText(p));
+    docs.forEach((x,i)=>{const f=S.files[x.key];L.push('   '+(f?'[file] '+packName(p,i,x,f):isDone(x)?'[collected, no file] '+x.t:(x.optional?'[if applicable] ':'[MISSING] ')+x.t))});L.push('')});
+  L.push('ON SUBMISSION DAY','1. Each applicant aged 15+ logs in to ICA e-Service with their OWN Singpass. Never share Singpass logins.',
+   '2. '+(sch.sponsor?'The sponsor':'The main applicant')+' fills in the form and uploads the files from this pack.','3. Each applicant reviews the form and makes their own declarations.',
+   '4. Pay S$100 per applicant on ICA e-Service. Save the reference ID.','5. Keep every pass valid until the outcome. Answer any ICA request for more documents quickly.','','Not affiliated with ICA. Confirm requirements at www.ica.gov.sg.');
   return L.join('\r\n');
 }
 async function buildZip(btn){
-  const m=$('packMsg');
-  if(!window.JSZip){m.textContent='The zip tool did not load. Check your internet connection and reload the page.';return}
+  if(!window.JSZip){say('The zip tool did not load. Check your internet connection and reload the page.');return}
   btn.disabled=true;btn.textContent='Preparing pack…';
-  try{
-    const zip=new JSZip();let n=0,miss=0;
-    const ppl=sortedPeople();
-    for(let pi=0;pi<ppl.length;pi++){const p=ppl[pi];const docs=docsFor(p);const folder=zip.folder(String(pi+1)+'_'+slug(pname(p)));
-      for(let i=0;i<docs.length;i++){const x=docs[i];const f=S.files[x.key];if(!f)continue;
-        const blob=await idbGet(x.key);if(blob){folder.file(packName(p,i,x,f),blob);n++}else miss++}}
+  try{const zip=new JSZip();let n=0,miss=0;const ppl=sorted();
+    for(let pi=0;pi<ppl.length;pi++){const p=ppl[pi],docs=docsFor(p);let folder=null;
+      for(let i=0;i<docs.length;i++){const x=docs[i],f=S.files[x.key];if(!f)continue;const blob=await idbGet(x.key);
+        if(blob){folder=folder||zip.folder(String(pi+1)+'_'+slug(pname(p)));folder.file(packName(p,i,x,f),blob);n++}else miss++}}
     zip.file('00_Summary.txt',packSummary());
-    const out=await zip.generateAsync({type:'blob'});
-    saveBlob(out,'pr-ready-pack-'+new Date().toISOString().slice(0,10)+'.zip');
-    m.textContent='Pack downloaded with '+n+' file'+(n===1?'':'s')+(miss?'. '+miss+' file(s) were no longer in this browser; attach them again.':'.');
-  }catch(e){m.textContent='The pack could not be built in this browser. Try again, or use a different browser.'}
-  finally{btn.disabled=false;btn.textContent='Download submission pack (.zip)'}
+    saveBlob(await zip.generateAsync({type:'blob'}),'PR-Ready-pack-'+iso(new Date())+'.zip');
+    say('Pack downloaded with '+n+' file'+(n===1?'':'s')+(miss?'. '+miss+' file(s) were no longer in this browser; attach them again.':'.'));
+  }catch(e){say('The pack could not be built in this browser. Try again, or use a different browser.')}
+  finally{btn.disabled=false;btn.textContent='Download submission pack'}
+}
+function saveProgress(){
+  const d=new Date(),name='PR-Ready-progress-'+d.getDate()+'-'+d.toLocaleDateString('en-SG',{month:'short'})+'-'+d.getFullYear()+'.json';
+  saveBlob(new Blob([JSON.stringify({...S,files:{},app:'pr-ready',v:2})],{type:'application/json'}),name);
+  say('Progress saved as '+name+'. Attached files are not included; keep your originals.');
+}
+function openProgress(file){
+  file.text().then(txt=>{const o=JSON.parse(txt);if(!o||!Array.isArray(o.people))throw 0;
+    o.files=S.files;o.checked=o.checked||{};o.x=Object.assign({divorce:false,separated:false,name:false,prevKids:false,lang:false},o.x||{});o.example=false;S=o;render();say('Progress opened. Files already in this browser were kept.')})
+   .catch(()=>say("That file isn't a PR Ready progress file."));
+}
+let wipeArmed=false;
+async function wipe(btn){
+  if(!wipeArmed){wipeArmed=true;btn.textContent='Click again to delete everything';setTimeout(()=>{wipeArmed=false;if(btn.isConnected)btn.textContent='Delete everything from this browser'},4000);return}
+  wipeArmed=false;try{localStorage.removeItem(KEY);localStorage.removeItem(OLDKEY)}catch(e){}try{await idb('readwrite',st=>st.clear())}catch(e){}
+  S=blank();location.hash='#start';render();
 }
 
+/* ---------- render + events ---------- */
+function route(){const h=location.hash.slice(1);return VIEWS.includes(h)?h:'start'}
+function render(){
+  syncSponsor();const v=route(),fid=document.activeElement&&document.activeElement.id;
+  renderTop(v);
+  $('view').innerHTML=v==='household'?viewHousehold():v==='documents'?viewDocuments():v==='pack'?viewPack():viewStart();
+  document.title=v==='start'?'PR Ready SG':(STEPS.find(s=>s[0]===v)[1]+' · PR Ready SG');
+  if(fid&&$(fid))$(fid).focus();
+  save();
+}
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);render();const el=!VIEWS.includes(h)&&h?$(h):null;if(el)el.scrollIntoView();else window.scrollTo(0,0)});
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.f==='name'){const p=S.people.find(x=>x.id===t.dataset.id);if(p){p.name=t.value;S.example=false;const sm=$('summary');if(sm)sm.innerHTML=summaryHTML();save()}}});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.dataset.route!==undefined){S.scheme=t.value;S.example=false;render();return}
+  if(t.id==='target'){S.target=t.value||S.target;render();return}
+  if(t.id==='addRole'&&t.value){const r=t.value;S.people.push({id:uid(),role:r,name:'',sex:r==='child'?'m':'f',age:r==='child'?8:32,bornSG:r==='child',work:r==='child'?'none':'employed',overseas:false,singpass:false});S.example=false;render();return}
+  if(t.dataset.doc){S.checked[t.dataset.doc]=t.checked;render();return}
+  if(t.dataset.up){storeFile(t.dataset.up,t.files[0]);return}
+  if(t.id==='photoIn'){checkPhoto(t.files[0]);return}
+  if(t.id==='openFile'){const f=t.files[0];t.value='';if(f)openProgress(f);return}
+  if(t.dataset.f&&t.dataset.f!=='name'){const p=S.people.find(x=>x.id===t.dataset.id);if(!p)return;const f=t.dataset.f;
+    p[f]=t.type==='checkbox'?t.checked:f==='age'?Math.max(0,Math.min(110,parseInt(t.value||'0',10)||0)):t.value;S.example=false;render()}
+});
+document.addEventListener('toggle',e=>{const d=e.target;if(d.dataset&&d.dataset.open){const p=S.people.find(x=>x.id===d.dataset.open);if(p)p._open=d.open}},true);
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.dataset.chip){const k=t.dataset.chip;if(k==='m-overseas')S.marriage=S.marriage==='overseas'?'none':'overseas';else if(k==='m-sg')S.marriage=S.marriage==='sg'?'none':'sg';else S.x[k]=!S.x[k];S.example=false;render();return}
+  if(t.dataset.del){S.people=S.people.filter(p=>p.id!==t.dataset.del);render();return}
+  if(t.dataset.person){S.cur=t.dataset.person;render();return}
+  if(t.dataset.rm){removeFile(t.dataset.rm);return}
+  if(t.id==='packZip'){buildZip(t);return}
+  const a=t.dataset.act;
+  if(a==='example'){const f=S.files;S=example();S.files=f;render();return}
+  if(a==='photo'){photoOpen=!photoOpen;render();if(photoOpen&&$('photoCard'))$('photoCard').scrollIntoView({block:'nearest'});return}
+  if(a==='saveprog'){saveProgress();return}
+  if(a==='openprog'){$('openFile').click();return}
+  if(a==='wipe'){wipe(t);return}
+});
 render();
 })();
 </script>
-
 </body>
 </html>
